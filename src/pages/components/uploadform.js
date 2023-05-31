@@ -7,13 +7,25 @@ export default function UploadForm() {
     const formData = new FormData();
     formData.append("file", selectedFile);
 
-    const res = await fetch("/api/convert", {
+    const resConvert = await fetch("/api/convert", {
       method: "POST",
       body: formData,
     });
 
-    const result = await res.text();
-    console.log(result);
+    const resultConvert = await resConvert.text();
+    console.log(resultConvert);
+
+    const resGPT = await fetch("/api/getGptResponse", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ text: resultConvert.text }),
+    });
+
+    const resultGPT = await resGPT.json();
+
+    console.log(resultGPT);
   };
 
   return (
