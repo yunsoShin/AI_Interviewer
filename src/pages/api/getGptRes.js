@@ -11,10 +11,9 @@ export default async function handler(req, res) {
 
   const response = await openai.createCompletion({
     model: "text-davinci-003",
-    prompt: `You are a job interviewer. you look at the resume \n\n${requestBody}
-    You write 10 as detailed as possible technical questions on portfolio`,
-    temperature: 0.5,
-    max_tokens: 150,
+    prompt: `Please list as many technical questions as possible in order of importance for the front-end developer interview`,
+    temperature: 0,
+    max_tokens: 4000,
     top_p: 1.0,
     frequency_penalty: 0.0,
     presence_penalty: 0.0,
@@ -23,3 +22,5 @@ export default async function handler(req, res) {
     response.data.choices[0].text?.trim() || "sorry,there was a problem";
   res.status(200).json(result);
 }
+
+//${requestBody} What kind of job is this resume for? Tell me your job in one word in English
