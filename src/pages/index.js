@@ -1,9 +1,9 @@
 import React from "react";
-import UploadForm from "./components/uploadform";
+import UploadForm from "./components/uploadpdf";
 function index(props) {
   return (
     <div>
-      <UploadForm></UploadForm>
+      <Uploadpdf></Uploadpdf>
     </div>
   );
 }
