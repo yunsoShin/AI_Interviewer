@@ -13,14 +13,12 @@ export default function UploadForm() {
     });
 
     const resultConvert = await resConvert.text();
-    console.log(resultConvert);
-
-    const resGPT = await fetch("/api/getGptResponse", {
+    const resGPT = await fetch("/api/getGptRes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ text: resultConvert.text }),
+      body: JSON.stringify({ text: resultConvert }),
     });
 
     const resultGPT = await resGPT.json();
