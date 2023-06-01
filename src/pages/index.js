@@ -1,9 +1,10 @@
 import React from "react";
-import UploadForm from "./components/uploadpdf";
+import UploadPDF from "./components/uploadpdf";
+import UploadJSONL from "./components/uploadjsonl";
 function index(props) {
   return (
     <div>
-      <Uploadpdf></Uploadpdf>
+      <UploadPDF></UploadPDF>
     </div>
   );
 }
