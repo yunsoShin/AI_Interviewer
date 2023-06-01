@@ -1,7 +1,7 @@
 import React from "react";
 import UploadPDF from "./components/uploadpdf";
-import UploadJSONL from "./components/uploadjsonl";
-function index(props) {
+
+function index() {
   return (
     <div>
       <UploadPDF></UploadPDF>

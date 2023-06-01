@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function UploadForm() {
+export default function UploadPDF() {
   const [selectedFile, setSelectedFile] = useState();
 
   const submit = async () => {

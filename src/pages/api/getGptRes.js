@@ -12,8 +12,8 @@ export default async function handler(req, res) {
   const response = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: `${requestBody} What kind of job is this resume for? Tell me your job in one word in English`,
-    temperature: 0,
-    max_tokens: 15,
+    temperature: 0.2,
+    max_tokens: 100,
     top_p: 1.0,
     frequency_penalty: 0.0,
     presence_penalty: 0.0,

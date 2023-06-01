@@ -1,0 +1,30 @@
+{"prompt": "Front-end Developer", "completion": "What is the $Document Object Model$ (DOM) and how does it work?"}
+{"prompt": "Front-end Developer", "completion": "How does $event bubbling$ work in JavaScript? Can you provide a practical use-case scenario?"}
+{"prompt": "Front-end Developer", "completion": "Can you describe the concept of $hoisting$ in JavaScript?"}
+{"prompt": "Front-end Developer", "completion": "What are the differences between $null$ and $undefined$ in JavaScript?"}
+{"prompt": "Front-end Developer", "completion": "What are JavaScript $promises$? How do they compare to $callbacks$?"}
+{"prompt": "Front-end Developer", "completion": "How would you explain $this$ keyword in JavaScript?"}
+{"prompt": "Front-end Developer", "completion": "Can you differentiate between $== (double equals)$ and $=== (triple equals)$ in JavaScript?"}
+{"prompt": "Front-end Developer", "completion": "Can you define $arrow functions$ in JavaScript and their benefits?"}
+{"prompt": "Front-end Developer", "completion": "What is $asynchronous programming$ in JavaScript? Can you explain $callbacks$, $promises$, and $async/await$?"}
+{"prompt": "Front-end Developer", "completion": "Could you describe JavaScript $closures$ and give an example of a practical use?"}
+{"prompt": "Front-end Developer", "completion": "What is $React.js$ and how does it differ from other front-end frameworks such as $Angular$ and $Vue.js$?"}
+{"prompt": "Front-end Developer", "completion": "How would you explain $Virtual DOM$ in React and its advantages?"}
+{"prompt": "Front-end Developer", "completion": "Can you describe the $component lifecycle$ in React?"}
+{"prompt": "Front-end Developer", "completion": "What are $props$ and $state$ in React? How do they interact with each other?"}
+{"prompt": "Front-end Developer", "completion": "Could you differentiate between $controlled$ and $uncontrolled components$ in React?"}
+{"prompt": "Front-end Developer", "completion": "What is $Redux$ and how does it interact with React?"}
+{"prompt": "Front-end Developer", "completion": "What are $Hooks$ in React? Can you give an example of how to use $useState$ and $useEffect$?"}
+{"prompt": "Front-end Developer", "completion": "How do you handle $forms$ in React?"}
+{"prompt": "Front-end Developer", "completion": "What is $CSS-in-JS$? Can you list some benefits and drawbacks?"}
+{"prompt": "Front-end Developer", "completion": "What are $CSS Flexbox$ and $Grid$, and when would you use each?"}
+{"prompt": "Front-end Developer", "completion": "Can you explain $responsive design$? How is it achieved using CSS?"}
+{"prompt": "Front-end Developer", "completion": "What is $HTML5$ and how does it differ from its previous versions?"}
+{"prompt": "Front-end Developer", "completion": "Can you differentiate between $localStorage$, $sessionStorage$, and $cookies$?"}
+{"prompt": "Front-end Developer", "completion": "What are $Web Sockets$ and when would you use them?"}
+{"prompt": "Front-end Developer", "completion": "How would you make a web page accessible according to the $Web Content Accessibility Guidelines$ (WCAG)?"}
+{"prompt": "Front-end Developer", "completion": "Can you explain $Cross-Origin Resource Sharing$ (CORS)? When is it used?"}
+{"prompt": "Front-end Developer", "completion": "What is $Progressive Web App$ (PWA)? What are its key features and benefits?"}
+{"prompt": "Front-end Developer", "completion": "Can you describe the $critical rendering path$ in a web browser?"}
+{"prompt": "Front-end Developer", "completion": "What are $service workers$ and what functionalities do they provide in a web application?"}
+{"prompt": "Front-end Developer", "completion": "Can you explain how $security$ is ensured in a web application? Can you discuss $Cross-Site Scripting$ (XSS) and $Cross-Site Request Forgery$ (CSRF)?"}

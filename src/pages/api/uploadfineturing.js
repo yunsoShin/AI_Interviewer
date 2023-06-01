@@ -1,21 +1,18 @@
 import { useState } from "react";
 
 export default async function Uploadjsonl(req, res) {
-  const file = req.body.file;
   const openAPIKey = process.env.OPENAI_API_KEY;
-  const formData = new FormData();
-  formData.append("purpose", "fine-tune");
-  formData.append("file", file);
-
+  const formData = req.body;
   // 업로드 API 요청 처리 로직
+
   const response = await fetch("https://api.openai.com/v1/files", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${openAPIKey}`,
     },
     body: formData,
-  });
-
-  const data = await response.json();
-  res.status(response.status).json(data);
+  })
+    .then((response) => response.json())
+    .then((data) => res.status(200).json(data))
+    .catch((error) => res.status(500).json({ error: error.message }));
 }
