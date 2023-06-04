@@ -13,7 +13,7 @@ export default function UploadPDF() {
     });
 
     const resultConvert = await resConvert.text();
-    const resGPT = await fetch("/api/getGptRes", {
+    const resGPT = await fetch("/api/chatgpt", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
