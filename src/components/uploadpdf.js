@@ -23,6 +23,7 @@ export default function UploadPDF() {
       setSplitContent(splitData);
     } catch (error) {
       console.error(error);
+      console.error(error);
     }
   };
 
