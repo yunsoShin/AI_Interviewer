@@ -3,12 +3,12 @@ import CardSwiper from "./cardswiper";
 
 export default function UploadPDF() {
   const [selectedFile, setSelectedFile] = useState();
-
+  const [splitContent, setSplitContent] = useState();
   const submit = async () => {
     const formData = new FormData();
     formData.append("file", selectedFile);
 
-    const resConvert = await fetch("/api/convert", {
+    const resConvert = await fetch("/api/convertpdf", {
       method: "POST",
       body: formData,
     });
@@ -24,7 +24,7 @@ export default function UploadPDF() {
     });
     const resultJob = await job.json();
 
-    const resGPT = await fetch("/api/chatgpt", {
+    const resGPT = await fetch("/api/resquestionarr", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,9 +34,14 @@ export default function UploadPDF() {
 
     const resultGPT = await resGPT.json();
     const content = resultGPT.content;
-    const splitContent = content.split(/\n[0-9]+\.\s/);
-  };
 
+    const splitData = content
+      .split(/(^|\n)[0-9]+\.\s/)
+      .filter((item) => item !== "\n" && item);
+
+    setSplitContent(splitData);
+  };
+  console.log(splitContent);
   return (
     <div>
       <input type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
