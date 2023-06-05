@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CardSwiper from "./cardswiper";
 
 export default function UploadPDF() {
   const [selectedFile, setSelectedFile] = useState();
@@ -32,16 +33,15 @@ export default function UploadPDF() {
     });
 
     const resultGPT = await resGPT.json();
-
-    console.log(resultGPT);
     const content = resultGPT.content;
-    console.log(content);
+    const splitContent = content.split(/\n[0-9]+\.\s/);
   };
 
   return (
     <div>
       <input type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
       <button onClick={submit}>Upload</button>
+      <CardSwiper data={splitContent} />
     </div>
   );
 }
