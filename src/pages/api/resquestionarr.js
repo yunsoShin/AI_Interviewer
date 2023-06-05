@@ -6,8 +6,15 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 export default async function handler(req, res) {
-  const resume = req.body.text;
-  const myJob = req.body.resultJob;
+  if (!req.body || typeof req.body !== "object") {
+    res.status(400).send("Invalid JSON");
+    return;
+  }
+
+  const requestBody = JSON.stringify(req.body);
+
+  const resume = requestBody.text;
+  const myJob = requestBody.resultJob;
   const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     messages: [
@@ -25,7 +32,7 @@ export default async function handler(req, res) {
   });
 
   const result =
-    response.data.choices[0].message || "sorry, there was a problem";
+    response.data.choices[0].message.content || "sorry, there was a problem";
 
   res.status(200).json(result);
 }

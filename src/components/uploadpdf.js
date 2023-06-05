@@ -14,7 +14,7 @@ export default function UploadPDF() {
       const resultJob = await getJob(resultConvert);
       const resultGPT = await getQuestionArr(resultConvert, resultJob);
 
-      const content = resultGPT.content;
+      const content = resultGPT;
 
       const splitData = content
         .split(/(^|\n)[0-9]+\.\s/)
@@ -22,7 +22,6 @@ export default function UploadPDF() {
 
       setSplitContent(splitData);
     } catch (error) {
-      console.error(error);
       console.error(error);
     }
   };
