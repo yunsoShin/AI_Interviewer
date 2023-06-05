@@ -13,17 +13,29 @@ export default function UploadPDF() {
     });
 
     const resultConvert = await resConvert.text();
-    const resGPT = await fetch("/api/chatgpt", {
+
+    const job = await fetch("/api/getJob", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ text: resultConvert }),
     });
+    const resultJob = await job.json();
+
+    const resGPT = await fetch("/api/chatgpt", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ text: resultConvert, resultJob: resultJob }),
+    });
 
     const resultGPT = await resGPT.json();
 
     console.log(resultGPT);
+    const content = resultGPT.content;
+    console.log(content);
   };
 
   return (

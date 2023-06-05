@@ -20,6 +20,7 @@ export default async function handler(req, res) {
   });
   const result =
     response.data.choices[0].text?.trim() || "sorry,there was a problem";
+
   res.status(200).json(result);
 }
 
