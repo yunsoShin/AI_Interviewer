@@ -1,6 +1,6 @@
 import React from "react";
-import UploadPDF from "./components/uploadpdf";
-import CardSwiper from "./components/cardswiper";
+import UploadPDF from "../components/uploadpdf";
+import CardSwiper from "../components/cardswiper";
 
 function index() {
   return (

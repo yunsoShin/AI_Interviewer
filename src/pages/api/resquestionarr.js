@@ -26,6 +26,6 @@ export default async function handler(req, res) {
 
   const result =
     response.data.choices[0].message || "sorry, there was a problem";
-  console.log(req.body.resultJob);
+
   res.status(200).json(result);
 }
