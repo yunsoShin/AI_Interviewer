@@ -7,18 +7,20 @@ const openai = new OpenAIApi(configuration);
 
 export default async function handler(req, res) {
   const requestBody = JSON.stringify(req.body); // 요청의 body를 JSON 문자열로 변환
+  console.log("Request Body:", requestBody);
 
   const response = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: `${requestBody} What kind of job is this resume for? Tell me your job in one word in English`,
     temperature: 0.2,
-    max_tokens: 100,
+    max_tokens: 30,
     top_p: 1.0,
     frequency_penalty: 0.0,
     presence_penalty: 0.0,
   });
   const result =
     response.data.choices[0].text?.trim() || "sorry,there was a problem";
-  console.log(result);
   res.status(200).json(result);
 }
+
+//${requestBody} What kind of job is this resume for? Tell me your job in one word in English

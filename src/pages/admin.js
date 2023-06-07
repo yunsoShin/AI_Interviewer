@@ -1,7 +1,11 @@
 import React from "react";
-
+import UploadJSONL from "../components/uploadjsonl";
 function admin(props) {
-  return <div></div>;
+  return (
+    <div>
+      <UploadJSONL></UploadJSONL>
+    </div>
+  );
 }
 
 export default admin;

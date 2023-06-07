@@ -1,9 +1,5 @@
 import { Configuration, OpenAIApi } from "openai";
 
-export const config = {
-  runtime: "experimental-edge",
-};
-
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -15,10 +11,8 @@ export default async function handler(req, res) {
     return;
   }
 
-  const requestBody = JSON.stringify(req.body);
-
-  const resume = requestBody.text;
-  const myJob = requestBody.resultJob;
+  const resume = req.body.text;
+  const myJob = req.body.resultJob;
   const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     messages: [
