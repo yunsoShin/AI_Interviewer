@@ -23,4 +23,4 @@ export default async function handler(req, res) {
   res.status(200).json(result);
 }
 
-//${requestBody} What kind of job is this resume for? Tell me your job in one word in English
+//${requestBody} What kind of job is this resume for? Tell me your job in one word in English1
