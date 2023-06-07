@@ -1,5 +1,7 @@
 import { Configuration, OpenAIApi } from "openai";
 
+export const runtime = "edge"; // Edge 런타임을 명시
+
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });

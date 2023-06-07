@@ -2,13 +2,15 @@ import { NextApiRequest, NextApiResponse } from "next";
 import multer from "multer";
 import pdfParse from "pdf-parse";
 
-const upload = multer({ storage: multer.memoryStorage() });
-
 export const config = {
   api: {
     bodyParser: false,
   },
 };
+
+export const runtime = "edge";
+
+const upload = multer({ storage: multer.memoryStorage() });
 
 export default async (req, res) => {
   await new Promise((resolve, reject) =>
