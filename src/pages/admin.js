@@ -5,3 +5,4 @@ function admin(props) {
 }
 
 export default admin;
+//배포
