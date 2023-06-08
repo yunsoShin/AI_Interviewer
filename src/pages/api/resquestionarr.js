@@ -10,9 +10,12 @@ export default async function handler(req, res) {
     res.status(400).send("Invalid JSON");
     return;
   }
-
-  const resume = req.body.resultConvert;
-  const myJob = req.body.resultJob;
+  const body = await req.json();
+  const resume = body.resultConvert;
+  const myJob = body.resultJob;
+  console.log(body);
+  console.log(resume);
+  console.log(myJob);
   const payload = {
     model: "gpt-3.5-turbo",
     messages: [
@@ -27,10 +30,11 @@ export default async function handler(req, res) {
         ${resume}Based on this article, write 5 technical questions that the interviewer can ask in order of importance So please write 10 questions`,
       },
     ],
+
     stream: true,
   };
   const stream = await OpenAIStream(payload);
-  console.log(stream);
+
   return new Response(stream, {
     headers: new Headers({
       // since we don't use browser's EventSource interface, specifying content-type is optional.

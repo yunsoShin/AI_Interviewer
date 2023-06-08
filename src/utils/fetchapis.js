@@ -23,11 +23,11 @@ export const getJob = async (text) => {
   return res.json();
 };
 
-export const getQuestionArr = async (text, resultJob) => {
+export const getQuestionArr = async (resultConvert, resultJob) => {
   const response = await fetch("/api/resquestionarr", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ text, resultJob }),
+    body: JSON.stringify({ resultConvert, resultJob }),
   });
 };
 

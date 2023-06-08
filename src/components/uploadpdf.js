@@ -29,13 +29,16 @@ export default function UploadPDF() {
 
     const resultConvert = await convertPdf(selectedFile);
     const resultJob = await getJob(resultConvert);
+
     const response = await fetch("/api/resquestionarr", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ resultConvert, resultJob }),
+      body: JSON.stringify({
+        resultConvert: resultConvert,
+        resultJob: resultJob,
+      }),
     });
 
-    console.log(response);
     const data = response.body;
     if (!data) {
       return;
