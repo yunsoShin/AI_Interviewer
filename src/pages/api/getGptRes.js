@@ -7,7 +7,6 @@ const openai = new OpenAIApi(configuration);
 
 export default async function handler(req, res) {
   const requestBody = JSON.stringify(req.body); // 요청의 body를 JSON 문자열로 변환
-  console.log("Request Body:", requestBody);
 
   const response = await openai.createCompletion({
     model: "text-davinci-003",

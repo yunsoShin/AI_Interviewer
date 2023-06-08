@@ -1,19 +1,19 @@
 import { Configuration, OpenAIApi } from "openai";
+import { OpenAIStream } from "../../utils/fetchapis";
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
+export const config = {
+  runtime: "edge",
+};
 
-export default async function handler(req, res) {
+export default async function handler(req) {
   if (!req.body || typeof req.body !== "object") {
     res.status(400).send("Invalid JSON");
     return;
   }
 
-  const resume = req.body.text;
+  const resume = req.body.resultConvert;
   const myJob = req.body.resultJob;
-  const response = await openai.createChatCompletion({
+  const payload = {
     model: "gpt-3.5-turbo",
     messages: [
       {
@@ -27,10 +27,24 @@ export default async function handler(req, res) {
         ${resume}Based on this article, write 5 technical questions that the interviewer can ask in order of importance So please write 10 questions`,
       },
     ],
+    temperature: 0.7,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0,
+    max_tokens: 2000,
+    stream: true,
+    n: 1,
+  };
+  const stream = await OpenAIStream(payload);
+  console.log(stream);
+  return new Response(stream, {
+    headers: new Headers({
+      // since we don't use browser's EventSource interface, specifying content-type is optional.
+      // the eventsource-parser library can handle the stream response as SSE, as long as the data format complies with SSE:
+      // https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#sending_events_from_the_server
+
+      // 'Content-Type': 'text/event-stream',
+      "Cache-Control": "no-cache",
+    }),
   });
-
-  const result =
-    response.data.choices[0].message.content || "sorry, there was a problem";
-
-  res.status(200).json(result);
 }
