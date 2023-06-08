@@ -5,7 +5,7 @@ export const config = {
   runtime: "edge",
 };
 
-export default async function handler(req) {
+export default async function handler(req, res) {
   if (!req.body || typeof req.body !== "object") {
     res.status(400).send("Invalid JSON");
     return;
@@ -27,13 +27,7 @@ export default async function handler(req) {
         ${resume}Based on this article, write 5 technical questions that the interviewer can ask in order of importance So please write 10 questions`,
       },
     ],
-    temperature: 0.7,
-    top_p: 1,
-    frequency_penalty: 0,
-    presence_penalty: 0,
-    max_tokens: 2000,
     stream: true,
-    n: 1,
   };
   const stream = await OpenAIStream(payload);
   console.log(stream);
