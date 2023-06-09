@@ -32,3 +32,49 @@ export function login() {
 export function logout() {
   signOut(auth).catch(console.error);
 }
+
+export function onUserStateChange(callback) {
+  onAuthStateChanged(auth, async (user) => {
+    const updatedUser = user ? await adminUser(user) : null;
+    callback(updatedUser);
+    console.log(user);
+  });
+}
+
+async function adminUser(user) {
+  return get(ref(database, "admins")) //
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const admins = snapshot.val();
+        const isAdmin = admins.includes(user.uid);
+        return { ...user, isAdmin };
+      }
+      return user;
+    });
+}
+
+export async function getResume() {
+  return get(ref(database, "Resumes")).then((snapshot) => {
+    if (snapshot.exists()) {
+      return Object.values(snapshot.val());
+    }
+    return [];
+  });
+}
+export async function handleDelete(id) {
+  return remove(ref(database, `Resumes/${id}`)).then(
+    console.log("성공하였습니다")
+  );
+}
+
+export async function uploadResume(resume, userId) {
+  const id = uuid();
+  return set(ref(database, `Resumes/${userId}`), {
+    ...resume,
+    id,
+  });
+}
+
+export async function removeFromLike(userId, resumeId) {
+  return remove(ref(database, `carts/${userId}/${resumeId}`));
+}

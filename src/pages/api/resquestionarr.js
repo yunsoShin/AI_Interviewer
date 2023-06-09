@@ -4,18 +4,10 @@ import { OpenAIStream } from "../../utils/fetchapis";
 export const config = {
   runtime: "edge",
 };
-
 export default async function handler(req, res) {
-  if (!req.body || typeof req.body !== "object") {
-    res.status(400).send("Invalid JSON");
-    return;
-  }
   const body = await req.json();
   const resume = body.resultConvert;
   const myJob = body.resultJob;
-  console.log(body);
-  console.log(resume);
-  console.log(myJob);
   const payload = {
     model: "gpt-3.5-turbo",
     messages: [
@@ -30,18 +22,12 @@ export default async function handler(req, res) {
         ${resume}Based on this article, write 5 technical questions that the interviewer can ask in order of importance So please write 10 questions`,
       },
     ],
-
+    max_tokens: 100,
     stream: true,
   };
   const stream = await OpenAIStream(payload);
-
   return new Response(stream, {
     headers: new Headers({
-      // since we don't use browser's EventSource interface, specifying content-type is optional.
-      // the eventsource-parser library can handle the stream response as SSE, as long as the data format complies with SSE:
-      // https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#sending_events_from_the_server
-
-      // 'Content-Type': 'text/event-stream',
       "Cache-Control": "no-cache",
     }),
   });
