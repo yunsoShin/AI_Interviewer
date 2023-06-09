@@ -1,6 +1,7 @@
 // 필요한 모듈을 불러옵니다.
 import { createContext, useContext, useEffect, useState } from "react";
 import { login, logout, onUserStateChange } from "../pages/api/firebase";
+import "../styles/globals.css";
 
 // createContext를 사용하여 새로운 Context를 생성합니다. 이 Context는 전역 상태를 공유하기 위해 사용됩니다.
 const AuthContext = createContext();

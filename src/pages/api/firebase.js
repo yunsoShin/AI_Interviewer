@@ -8,6 +8,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { getDatabase, ref, set, get, remove } from "firebase/database";
+import { Result } from "postcss";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -76,5 +77,16 @@ export async function uploadResume(resume, userId) {
 }
 
 export async function removeFromLike(userId, resumeId) {
-  return remove(ref(database, `carts/${userId}/${resumeId}`));
+  return remove(ref(database, `Likes/${userId}/${resumeId}`));
+}
+
+export async function getLike(userID) {
+  get(ref(database, `Likes/${userID}`)).then((snapshot) => {
+    const items = snapshot.val() || [];
+    return Object.values(items);
+  });
+}
+
+export async function addOrUpdateToLike(userID, resume) {
+  return set(ref(database, `Likes/${userID}/${resume.id}`), resume);
 }

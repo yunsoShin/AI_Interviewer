@@ -1,13 +1,12 @@
 import React from "react";
 import UploadPDF from "../components/uploadpdf";
+import Navbar from "@/components/navbar";
 
-import LoginButton from "@/components/loginbutton";
 function index() {
   return (
     <div>
+      <Navbar></Navbar>
       <UploadPDF></UploadPDF>
-
-      <LoginButton></LoginButton>
     </div>
   );
 }
