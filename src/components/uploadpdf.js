@@ -1,26 +1,24 @@
-import { useState, useRef } from "react";
-import CardSwiper from "./cardswiper";
-import { convertPdf, getJob, getQuestionArr } from "../utils/fetchapis";
-import { Toaster, toast } from "react-hot-toast";
+import { useState } from "react";
+
+import { convertPdf, getJob } from "../utils/fetchapis";
 import Addquestion from "./addquestion";
-import {
-  createParser,
-  ParsedEvent,
-  ReconnectInterval,
-} from "eventsource-parser";
-// 분리된 비동기 함수들
+import { uploadResume } from "../pages/api/firebase";
+import { useAuthContext } from "@/pages/_app";
 
 export default function UploadPDF() {
+  const { user } = useAuthContext();
   const [selectedFile, setSelectedFile] = useState();
   const [resultConvert, setResultConvert] = useState();
   const [resultJob, setResultJob] = useState();
   const submit = async (e) => {
     e.preventDefault();
-
     const resultConvert = await convertPdf(selectedFile);
     setResultConvert(resultConvert);
     const resultJob = await getJob(resultConvert);
     setResultJob(resultJob);
+    const resume = resultConvert.toString();
+    await uploadResume(resume, user.uid);
+    console.log(user.uid, resume);
   };
   return (
     <div>

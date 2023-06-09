@@ -71,8 +71,8 @@ export async function handleDelete(id) {
 export async function uploadResume(resume, userId) {
   const id = uuid();
   return set(ref(database, `Resumes/${userId}`), {
-    ...resume,
     id,
+    resume,
   });
 }
 
