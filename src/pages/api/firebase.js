@@ -8,7 +8,6 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { getDatabase, ref, set, get, remove } from "firebase/database";
-import { Result } from "postcss";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
