@@ -3,7 +3,7 @@ import UploadPDF from "../components/uploadpdf";
 import Navbar from "@/components/navbar";
 import Answer from "@/components/answer";
 import Addquestion from "@/components/addquestion";
-function index() {
+function Home() {
   return (
     <div className=" pointer-events-auto">
       <Navbar></Navbar>
@@ -21,4 +21,4 @@ function index() {
   );
 }
 
-export default index;
+export default Home;
