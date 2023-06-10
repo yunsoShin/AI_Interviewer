@@ -55,7 +55,7 @@ export default function UploadPDF() {
 
   return (
     <div
-      className="
+      className=" w-3/6
     "
     >
       <Toaster /> {/* Add this line */}
