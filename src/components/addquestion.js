@@ -108,11 +108,11 @@ function Addquestion() {
                     );
                   })}
               </div>
+              <Answer prompt={generatedBios}></Answer>
             </>
           )}
         </div>
       </>
-      {generatedBios && <Answer prompt={generatedBios}></Answer>}
     </div>
   );
 }
