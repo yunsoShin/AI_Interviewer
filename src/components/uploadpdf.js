@@ -4,14 +4,15 @@ import { useDropzone } from "react-dropzone";
 import { convertPdf, getJob } from "../utils/fetchapis";
 import Addquestion from "./addquestion";
 import { uploadResume } from "../pages/api/firebase";
-import { useAuthContext } from "@/pages/_app";
+import { useAuthContext, useUploadProcess } from "@/pages/_app";
 import { Toaster, toast } from "react-hot-toast"; // Add this line
 
 export default function UploadPDF() {
+  const { resultConvert, setResultConvert, resultJob, setResultJob } =
+    useUploadProcess();
   const { uid } = useAuthContext();
   const [selectedFile, setSelectedFile] = useState();
-  const [resultConvert, setResultConvert] = useState();
-  const [resultJob, setResultJob] = useState();
+
   const [loading, setLoading] = useState(false);
 
   const onDrop = useCallback((acceptedFiles) => {
@@ -35,7 +36,10 @@ export default function UploadPDF() {
       const resultJob = await getJob(resultConvert);
       setResultJob(resultJob);
       const resume = resultConvert.toString();
-      await uploadResume(resume, uid);
+
+      {
+        uid && (await uploadResume(resume, uid));
+      }
     } catch (error) {
       console.error(error);
     } finally {
@@ -51,7 +55,7 @@ export default function UploadPDF() {
 
   return (
     <div
-      className="max-w-5xl mx-auto flex justify-center items-center  p-11
+      className="
     "
     >
       <Toaster /> {/* Add this line */}

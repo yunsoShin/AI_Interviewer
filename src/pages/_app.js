@@ -3,6 +3,25 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { login, logout, onUserStateChange } from "../pages/api/firebase";
 import "../styles/globals.css";
 
+const UploadProcessContext = createContext();
+
+export const UploadProcessProvider = ({ children }) => {
+  const [resultConvert, setResultConvert] = useState();
+  const [resultJob, setResultJob] = useState();
+
+  return (
+    <UploadProcessContext.Provider
+      value={{ resultConvert, setResultConvert, resultJob, setResultJob }}
+    >
+      {children}
+    </UploadProcessContext.Provider>
+  );
+};
+
+export function useUploadProcess() {
+  return useContext(UploadProcessContext);
+}
+
 // createContext를 사용하여 새로운 Context를 생성합니다. 이 Context는 전역 상태를 공유하기 위해 사용됩니다.
 const AuthContext = createContext();
 
@@ -40,7 +59,9 @@ export function useAuthContext() {
 export default function MyApp({ Component, pageProps }) {
   return (
     <AuthContextProvider>
-      <Component {...pageProps} />
+      <UploadProcessProvider>
+        <Component {...pageProps} />
+      </UploadProcessProvider>
     </AuthContextProvider>
   );
 }
