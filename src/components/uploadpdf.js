@@ -59,9 +59,6 @@ export default function UploadPDF() {
     "
     >
       <Toaster /> {/* Add this line */}
-      {resultConvert && resultJob && (
-        <Addquestion resultConvert={resultConvert} resultJob={resultJob} />
-      )}
       {loading && (
         <div className=" text-center">Uploading and converting...</div>
       )}

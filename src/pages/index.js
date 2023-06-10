@@ -2,6 +2,7 @@ import React from "react";
 import UploadPDF from "../components/uploadpdf";
 import Navbar from "@/components/navbar";
 import Answer from "@/components/answer";
+import Addquestion from "@/components/addquestion";
 function index() {
   return (
     <div className=" pointer-events-auto">
@@ -14,6 +15,7 @@ function index() {
 
       <main className="max-w-5xl mx-auto flex  flex-row justify-center items-center  p-11">
         <UploadPDF></UploadPDF>
+        <Addquestion></Addquestion>
       </main>
     </div>
   );

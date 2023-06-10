@@ -8,8 +8,11 @@ import {
   ParsedEvent,
   ReconnectInterval,
 } from "eventsource-parser";
+import { useAuthContext, useUploadProcess } from "@/pages/_app";
 
-function Addquestion({ resultConvert, resultJob }) {
+function Addquestion() {
+  const { resultConvert, setResultConvert, resultJob, setResultJob } =
+    useUploadProcess();
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
   const [generatedBios, setGeneratedBios] = useState("");
