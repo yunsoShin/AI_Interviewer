@@ -51,7 +51,7 @@ export default function UploadPDF() {
 
   return (
     <div
-      className="text-center justify-center items-center w-full  px-4 mt-12
+      className="max-w-5xl mx-auto flex justify-center items-center  p-11
     "
     >
       <Toaster /> {/* Add this line */}
