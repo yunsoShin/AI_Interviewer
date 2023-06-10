@@ -60,7 +60,7 @@ export default function UploadPDF() {
     >
       <Toaster /> {/* Add this line */}
       {loading && (
-        <div className=" text-center">Uploading and converting...</div>
+        <div className="text-center">Uploading and converting...</div>
       )}
       {!loading && !resultConvert && !resultJob && (
         <div

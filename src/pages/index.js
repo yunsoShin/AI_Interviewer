@@ -13,7 +13,7 @@ function index() {
         </h2>
       </div>
 
-      <main className="max-w-5xl mx-auto flex  flex-row justify-center items-center  p-11">
+      <main className="  max-w-7xl mx-auto flex flex-col justify-center items-center  p-11">
         <UploadPDF></UploadPDF>
         <Addquestion></Addquestion>
       </main>
