@@ -1,21 +1,23 @@
 import React from "react";
 import { useState } from "react";
 
-function Answer(props) {
+function Answer(prompt) {
   const [bio, setBio] = useState("");
-
+  console.log(prompt);
   return (
-    <div className="flex">
-      <textarea
-        value={bio}
-        onChange={(e) => setBio(e.target.value)}
-        rows={4}
-        className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black my-5"
-        placeholder={
-          "e.g. Senior Developer Advocate @vercel. Tweeting about web development, AI, and React / Next.js. Writing nutlope.substack.com."
-        }
-      />
-    </div>
+    <>
+      {
+        <div className=" max-w-7xl  w-full">
+          <textarea
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
+            rows={4}
+            className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black my-5"
+            placeholder={"This is conducted/progressed by chain reactions."}
+          />
+        </div>
+      }
+    </>
   );
 }
 

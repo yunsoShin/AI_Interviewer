@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import CardSwiper from "./cardswiper";
 import { convertPdf, getJob, getQuestionArr } from "../utils/fetchapis";
 import { Toaster, toast } from "react-hot-toast";
+import Answer from "./answer";
 import {
   createParser,
   ParsedEvent,
@@ -25,6 +26,7 @@ function Addquestion() {
 
   useEffect(() => {
     if ((resultConvert, resultJob)) {
+      setGeneratedBios("");
       const fetchData = async () => {
         setLoading(true);
         const response = await fetch("/api/resquestionarr", {
@@ -73,18 +75,19 @@ function Addquestion() {
   }, [resultConvert, resultJob]);
 
   return (
-    <div>
+    <div className=" w-full">
       <>
         <Toaster
           position="top-center"
           reverseOrder={false}
           toastOptions={{ duration: 2000 }}
         />
-        <hr className="h-px bg-gray-700 border-1 dark:bg-gray-700" />
+
         <div className="space-y-10 my-10">
           {generatedBios && (
             <>
-              <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto">
+              <hr className="h-px bg-gray-700 border-1 dark:bg-gray-700" />
+              <div className="space-y-8 flex flex-col items-center justify-center max-w-5xl mx-auto">
                 {generatedBios
                   .substring(generatedBios.indexOf("1") + 3)
                   .split("2.")
@@ -109,6 +112,7 @@ function Addquestion() {
           )}
         </div>
       </>
+      {generatedBios && <Answer prompt={generatedBios}></Answer>}
     </div>
   );
 }
