@@ -67,7 +67,10 @@ export default function UploadPDF() {
           {...getRootProps()}
           className="flex border-2 border-gray-400 rounded-md justify-center items-center p-4  text-center w-full h-full transition duration-500 ease-in-out transform hover:scale-105 cursor-pointer"
         >
-          <input {...getInputProps()} className="cursor-pointer" />
+          <input
+            {...getInputProps()}
+            className="cursor-pointer flex justify-center items-center p-4 w-full h-full "
+          />
           {isDragActive ? (
             <p className="flex  justify-center items-center p-4  text-center w-full h-full cursor-pointer">
               Drop the files here ...
