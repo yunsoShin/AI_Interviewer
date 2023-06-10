@@ -100,7 +100,7 @@ function Addquestion({ resultConvert, resultJob }) {
                         className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border"
                         onClick={() => {
                           navigator.clipboard.writeText(generatedBio);
-                          toast("Bio copied to clipboard", {
+                          toast("클립보드에 복사하였습니다", {
                             icon: "✂️",
                           });
                         }}
