@@ -4,7 +4,7 @@ import Navbar from "@/components/navbar";
 
 function index() {
   return (
-    <div>
+    <div className=" max-w-5xl p-16">
       <Navbar></Navbar>
       <UploadPDF></UploadPDF>
     </div>

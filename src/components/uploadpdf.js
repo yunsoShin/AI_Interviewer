@@ -50,7 +50,10 @@ export default function UploadPDF() {
   }, [selectedFile]);
 
   return (
-    <div>
+    <div
+      className="text-center justify-center items-center w-full  px-4 mt-12
+    "
+    >
       <Toaster /> {/* Add this line */}
       {resultConvert && resultJob && (
         <Addquestion resultConvert={resultConvert} resultJob={resultJob} />
@@ -60,14 +63,16 @@ export default function UploadPDF() {
       )}
       {!loading && (
         <div
-          className=" w-40 h-24 flex justify-center items-center border-2  border-gray-400 rounded-md"
           {...getRootProps()}
+          className="flex border-2 border-gray-400 rounded-md justify-center items-center p-4  text-center w-full h-full transition duration-500 ease-in-out transform hover:scale-105 cursor-pointer"
         >
-          <input {...getInputProps()} />
+          <input {...getInputProps()} className="cursor-pointer" />
           {isDragActive ? (
-            <p className="text-center">Drop the files here ...</p>
+            <p className="flex  justify-center items-center p-4  text-center w-full h-full cursor-pointer">
+              Drop the files here ...
+            </p>
           ) : (
-            <p className=" text-center">
+            <p className="flex justify-center items-center p-4 w-full h-full cursor-pointer">
               Drag 'n' drop some files here, or click to select files
             </p>
           )}
