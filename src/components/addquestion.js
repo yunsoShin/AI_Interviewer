@@ -19,8 +19,7 @@ function Addquestion({ resultConvert, resultJob }) {
       bioRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
-  const [selectedFile, setSelectedFile] = useState();
-  const [splitContent, setSplitContent] = useState();
+
   useEffect(() => {
     if ((resultConvert, resultJob)) {
       const fetchData = async () => {
@@ -82,14 +81,6 @@ function Addquestion({ resultConvert, resultJob }) {
         <div className="space-y-10 my-10">
           {generatedBios && (
             <>
-              <div>
-                <h2
-                  className="sm:text-4xl text-3xl font-bold text-slate-900 mx-auto text-center"
-                  ref={bioRef}
-                >
-                  AI interviewer
-                </h2>
-              </div>
               <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto">
                 {generatedBios
                   .substring(generatedBios.indexOf("1") + 3)
