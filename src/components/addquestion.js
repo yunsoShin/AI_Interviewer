@@ -31,7 +31,7 @@ function Addquestion() {
   };
 
   useEffect(() => {
-    if ((resultConvert, resultJob)) {
+    if ((resultConvert, resultJob, prompt)) {
       setGeneratedBios("");
       const fetchData = async () => {
         setLoading(true);
@@ -78,7 +78,7 @@ function Addquestion() {
 
       fetchData();
     }
-  }, [resultConvert, resultJob]);
+  }, [resultConvert, resultJob, prompt]);
 
   return (
     <div className=" w-full">
@@ -114,7 +114,7 @@ function Addquestion() {
                     );
                   })}
               </div>
-              <Answer prompt={generatedBios}></Answer>
+              <Answer></Answer>
             </>
           )}
         </div>
