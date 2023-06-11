@@ -27,7 +27,7 @@ export default async function handler(req, res) {
         ${resume}Based on this article, write 1 technical questions that the interviewer can ask in order of importance So please write 2 questions`,
       },
     ],
-    max_tokens: 300,
+    max_tokens: 50,
     stream: true,
   };
   const stream = await OpenAIStream(payload);
