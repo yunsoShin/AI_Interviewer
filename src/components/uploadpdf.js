@@ -8,8 +8,14 @@ import { useAuthContext, useUploadProcess } from "@/pages/_app";
 import { Toaster, toast } from "react-hot-toast"; // Add this line
 
 export default function UploadPDF() {
-  const { resultConvert, setResultConvert, resultJob, setResultJob } =
-    useUploadProcess();
+  const {
+    resultConvert,
+    setResultConvert,
+    resultJob,
+    setResultJob,
+    prompt,
+    setPrompt,
+  } = useUploadProcess();
   const { uid } = useAuthContext();
   const [selectedFile, setSelectedFile] = useState();
 
@@ -36,7 +42,8 @@ export default function UploadPDF() {
       const resultJob = await getJob(resultConvert);
       setResultJob(resultJob);
       const resume = resultConvert.toString();
-
+      setPrompt(`Please answer all the answers in Korean , ${resultJob} Please fill out 1 required interview questions for the job interview,
+      ${resume}Based on this article, write 1 technical questions that the interviewer can ask in order of importance So please write 2 questions`);
       {
         uid && (await uploadResume(resume, uid));
       }

@@ -11,8 +11,8 @@ export default async function handler(req, res) {
     return;
   }
   const body = await req.json();
-  const resume = body.resultConvert;
-  const myJob = body.resultJob;
+
+  const prompt = body.prompt;
 
   const payload = {
     model: "gpt-3.5-turbo",
@@ -23,8 +23,7 @@ export default async function handler(req, res) {
       },
       {
         role: "user",
-        content: `Please answer all the answers in Korean , ${myJob} Please fill out 1 required interview questions for the job interview,
-        ${resume}Based on this article, write 1 technical questions that the interviewer can ask in order of importance So please write 2 questions`,
+        content: `${prompt}`,
       },
     ],
     max_tokens: 50,

@@ -8,10 +8,18 @@ const UploadProcessContext = createContext();
 export const UploadProcessProvider = ({ children }) => {
   const [resultConvert, setResultConvert] = useState();
   const [resultJob, setResultJob] = useState();
+  const [prompt, setPrompt] = useState();
 
   return (
     <UploadProcessContext.Provider
-      value={{ resultConvert, setResultConvert, resultJob, setResultJob }}
+      value={{
+        resultConvert,
+        setResultConvert,
+        resultJob,
+        setResultJob,
+        prompt,
+        setPrompt,
+      }}
     >
       {children}
     </UploadProcessContext.Provider>

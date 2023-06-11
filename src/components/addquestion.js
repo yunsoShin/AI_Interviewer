@@ -12,8 +12,14 @@ import {
 import { useAuthContext, useUploadProcess } from "@/pages/_app";
 
 function Addquestion() {
-  const { resultConvert, setResultConvert, resultJob, setResultJob } =
-    useUploadProcess();
+  const {
+    resultConvert,
+    setResultConvert,
+    resultJob,
+    setResultJob,
+    prompt,
+    setPrompt,
+  } = useUploadProcess();
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
   const [generatedBios, setGeneratedBios] = useState("");
@@ -33,8 +39,7 @@ function Addquestion() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            resultConvert: resultConvert,
-            resultJob: resultJob,
+            prompt,
           }),
         });
 
