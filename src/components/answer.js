@@ -18,7 +18,7 @@ function Answer() {
             placeholder={"This is conducted/progressed by chain reactions."}
           />
           <button
-            className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full"
+            className="bg-black rounded-xl text-white font-medium px-4 sm:mt-10 mt-2 hover:bg-black/80 w-full"
             onClick={(e) => setPrompt(`${answer}`)}
           >
             답변하기 &rarr;
