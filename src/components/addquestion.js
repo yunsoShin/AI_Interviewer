@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
-import CardSwiper from "./cardswiper";
 import { convertPdf, getJob, getQuestionArr } from "../utils/fetchapis";
 import { Toaster, toast } from "react-hot-toast";
 import Answer from "./answer";
@@ -12,7 +11,8 @@ import {
 import { useAuthContext, useAIProcess } from "@/pages/_app";
 
 function Addquestion() {
-  const { resultConvert, resultJob, prompt } = useAIProcess();
+  const { resultConvert, resultJob, prompt, content, setContent } =
+    useAIProcess();
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
   const [generatedBios, setGeneratedBios] = useState("");
@@ -54,7 +54,6 @@ function Addquestion() {
             }
           }
         };
-
         const reader = data.getReader();
         const decoder = new TextDecoder();
         const parser = createParser(onParse);
@@ -63,7 +62,6 @@ function Addquestion() {
           const { value, done: doneReading } = await reader.read();
           done = doneReading;
           const chunkValue = decoder.decode(value, { stream: true });
-
           parser.feed(chunkValue);
         }
         scrollToBios();
@@ -108,7 +106,7 @@ function Addquestion() {
                     );
                   })}
               </div>
-              <Answer></Answer>
+              <Answer generatedBios={generatedBios}></Answer>
             </>
           )}
         </div>

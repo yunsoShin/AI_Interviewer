@@ -2,10 +2,12 @@ import React from "react";
 import { useState } from "react";
 import { useAIProcess } from "@/pages/_app";
 
-function Answer() {
-  const { prompt, setPrompt } = useAIProcess();
+function Answer({ generatedBios }) {
+  const { prompt, setPrompt, content, setContent } = useAIProcess();
   const [answer, setAnswer] = useState();
-
+  console.log(generatedBios);
+  setContent(generatedBios);
+  console.log(content);
   return (
     <>
       {

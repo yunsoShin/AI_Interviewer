@@ -9,6 +9,7 @@ export const AIProcessProvider = ({ children }) => {
   const [resultConvert, setResultConvert] = useState();
   const [resultJob, setResultJob] = useState();
   const [prompt, setPrompt] = useState();
+  const [content, setContent] = useState();
 
   return (
     <AIProcessContext.Provider
@@ -19,6 +20,8 @@ export const AIProcessProvider = ({ children }) => {
         setResultJob,
         prompt,
         setPrompt,
+        content,
+        setContent,
       }}
     >
       {children}
