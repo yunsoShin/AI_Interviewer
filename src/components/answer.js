@@ -6,8 +6,7 @@ function Answer({ generatedBios }) {
   const { prompt, setPrompt, content, setContent } = useAIProcess();
   const [answer, setAnswer] = useState();
   console.log(generatedBios);
-  setContent(generatedBios);
-  console.log(content);
+
   return (
     <>
       {

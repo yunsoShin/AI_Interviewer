@@ -24,16 +24,16 @@ function Addquestion() {
   };
 
   useEffect(() => {
-    if ((resultConvert, resultJob, prompt)) {
+    if ((resultConvert, resultJob, content)) {
       setGeneratedBios("");
-
+      console.log(content);
       const fetchData = async () => {
         setLoading(true);
         const response = await fetch("/api/resquestionarr", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            prompt,
+            content,
           }),
         });
 
@@ -70,7 +70,7 @@ function Addquestion() {
 
       fetchData();
     }
-  }, [resultConvert, resultJob, prompt]);
+  }, [resultConvert, resultJob, content]);
 
   return (
     <div className=" w-full">
