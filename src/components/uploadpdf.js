@@ -84,7 +84,7 @@ export default function UploadPDF() {
             </p>
           ) : (
             <p className="flex justify-center items-center p-4 w-full h-full cursor-pointer">
-              Drag 'n' drop some files here, or click to select files
+              Drag 'n' drop some files here, or click to select resume
             </p>
           )}
         </div>
