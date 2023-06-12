@@ -12,7 +12,7 @@ import {
 import { useAuthContext, useAIProcess } from "@/pages/_app";
 
 function Addquestion() {
-  const { resultConvert, resultJob, prompt } = useUploadProcess();
+  const { resultConvert, resultJob, prompt } = useAIProcess();
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
   const [generatedBios, setGeneratedBios] = useState("");

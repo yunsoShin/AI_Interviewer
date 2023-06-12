@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { login, logout, onUserStateChange } from "../pages/api/firebase";
 import "../styles/globals.css";
 
-const AIloadProcessContext = createContext();
+const AIProcessContext = createContext();
 
 export const AIProcessProvider = ({ children }) => {
   const [resultConvert, setResultConvert] = useState();
@@ -11,7 +11,7 @@ export const AIProcessProvider = ({ children }) => {
   const [prompt, setPrompt] = useState();
 
   return (
-    <AIloadProcessContext.Provider
+    <AIProcessContext.Provider
       value={{
         resultConvert,
         setResultConvert,
@@ -22,12 +22,12 @@ export const AIProcessProvider = ({ children }) => {
       }}
     >
       {children}
-    </AIloadProcessContext.Provider>
+    </AIProcessContext.Provider>
   );
 };
 
-export function useAIloadProcess() {
-  return useContext(AIloadProcessContext);
+export function useAIProcess() {
+  return useContext(AIProcessContext);
 }
 
 // createContext를 사용하여 새로운 Context를 생성합니다. 이 Context는 전역 상태를 공유하기 위해 사용됩니다.

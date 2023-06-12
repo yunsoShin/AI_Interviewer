@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { useUploadProcess } from "@/pages/_app";
+import { useAIProcess } from "@/pages/_app";
 
 function Answer() {
-  const { prompt, setPrompt } = useUploadProcess();
+  const { prompt, setPrompt } = useAIProcess();
   const [answer, setAnswer] = useState();
 
   return (

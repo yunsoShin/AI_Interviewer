@@ -4,7 +4,7 @@ import { useDropzone } from "react-dropzone";
 import { convertPdf, getJob } from "../utils/fetchapis";
 import Addquestion from "./addquestion";
 import { uploadResume } from "../pages/api/firebase";
-import { useAuthContext, useUploadProcess } from "@/pages/_app";
+import { useAuthContext, useAIProcess } from "@/pages/_app";
 import { Toaster, toast } from "react-hot-toast"; // Add this line
 
 export default function UploadPDF() {
@@ -15,7 +15,7 @@ export default function UploadPDF() {
     setResultJob,
     prompt,
     setPrompt,
-  } = useUploadProcess();
+  } = useAIProcess();
   const { uid } = useAuthContext();
   const [selectedFile, setSelectedFile] = useState();
 
