@@ -12,20 +12,11 @@ export default async function handler(req, res) {
   }
   const body = await req.json();
 
-  const prompt = body.prompt;
+  const content = body.content;
 
   const payload = {
     model: "gpt-3.5-turbo",
-    messages: [
-      {
-        role: "system",
-        content: `Please answer all the answers in Korean, You read the text and Generate list 2 clearly labeled "1." and "2." technical questions for the interviewer to as These questions are as detailed as possible and consist of essential questions related to job`,
-      },
-      {
-        role: "user",
-        content: `${prompt}`,
-      },
-    ],
+    messages: content,
     max_tokens: 300,
     stream: true,
   };
