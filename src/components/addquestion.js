@@ -9,17 +9,10 @@ import {
   ParsedEvent,
   ReconnectInterval,
 } from "eventsource-parser";
-import { useAuthContext, useUploadProcess } from "@/pages/_app";
+import { useAuthContext, useAIProcess } from "@/pages/_app";
 
 function Addquestion() {
-  const {
-    resultConvert,
-    setResultConvert,
-    resultJob,
-    setResultJob,
-    prompt,
-    setPrompt,
-  } = useUploadProcess();
+  const { resultConvert, resultJob, prompt } = useUploadProcess();
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
   const [generatedBios, setGeneratedBios] = useState("");
@@ -33,6 +26,7 @@ function Addquestion() {
   useEffect(() => {
     if ((resultConvert, resultJob, prompt)) {
       setGeneratedBios("");
+
       const fetchData = async () => {
         setLoading(true);
         const response = await fetch("/api/resquestionarr", {
