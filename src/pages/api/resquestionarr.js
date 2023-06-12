@@ -26,7 +26,7 @@ export default async function handler(req, res) {
         content: `${prompt}`,
       },
     ],
-    max_tokens: 150,
+    max_tokens: 50,
     stream: true,
   };
   const stream = await OpenAIStream(payload);
