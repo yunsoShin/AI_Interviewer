@@ -3,7 +3,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Getting Started
 
 First, run the development server:
-
+![화면 기록 2023-06-13 오후 12 03 07](https://github.com/yunsoShin/next13portfolio/assets/91814941/e53d22bf-b585-4eae-9c2a-86000eda7b2f)
+![화면 기록 2023-06-13 오후 12 01 10](https://github.com/yunsoShin/next13portfolio/assets/91814941/3ade4a24-161c-47fb-8d35-b43192a53de3)
 ```bash
 npm run dev
 # or
