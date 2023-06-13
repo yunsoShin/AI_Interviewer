@@ -80,9 +80,17 @@ export async function removeFromLike(userId, resumeId) {
 }
 
 export async function getLike(userID) {
-  get(ref(database, `Likes/${userID}`)).then((snapshot) => {
-    const items = snapshot.val() || [];
+  return get(ref(database, `Likes/${userID}`)).then((snapshot) => {
+    const items = snapshot.val() || {};
     return Object.values(items);
+  });
+}
+
+export async function setLikes(likeText, userId) {
+  const id = uuid();
+  return set(ref(database, `Likes/${userId}/${id}`), {
+    likeText,
+    id,
   });
 }
 

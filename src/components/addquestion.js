@@ -9,10 +9,12 @@ import {
   ReconnectInterval,
 } from "eventsource-parser";
 import { useAuthContext, useAIProcess } from "@/pages/_app";
+import { setLikes } from "@/pages/api/firebase";
 
 function Addquestion() {
   const { resultConvert, resultJob, prompt, content, setContent } =
     useAIProcess();
+  const { uid } = useAuthContext();
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
   const [generatedBios, setGeneratedBios] = useState("");
@@ -93,11 +95,12 @@ function Addquestion() {
                     return (
                       <div
                         className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border"
-                        onClick={() => {
+                        onClick={async () => {
                           navigator.clipboard.writeText(generatedBio);
-                          toast("클립보드에 복사하였습니다", {
+                          toast("클립보드와 MyBox에 저장하였습니다", {
                             icon: "✂️",
                           });
+                          setLikes(generatedBio, uid);
                         }}
                         key={index}
                       >

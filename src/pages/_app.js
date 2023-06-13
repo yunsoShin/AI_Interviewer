@@ -1,6 +1,7 @@
 // 필요한 모듈을 불러옵니다.
 import { createContext, useContext, useEffect, useState } from "react";
 import { login, logout, onUserStateChange } from "../pages/api/firebase";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "../styles/globals.css";
 
 const AIProcessContext = createContext();
@@ -67,12 +68,16 @@ export function useAuthContext() {
 
 // _app.js 파일에서 AuthContextProvider 컴포넌트를 최상위에 위치시킵니다.
 // 이렇게 하면 이 앱의 모든 컴포넌트에서 AuthContext의 값을 사용할 수 있게 됩니다.
+const queryClient = new QueryClient();
+
 export default function MyApp({ Component, pageProps }) {
   return (
-    <AuthContextProvider>
-      <AIProcessProvider>
-        <Component {...pageProps} />
-      </AIProcessProvider>
-    </AuthContextProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthContextProvider>
+        <AIProcessProvider>
+          <Component {...pageProps} />
+        </AIProcessProvider>
+      </AuthContextProvider>
+    </QueryClientProvider>
   );
 }
