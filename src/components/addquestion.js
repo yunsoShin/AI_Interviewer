@@ -88,7 +88,7 @@ function Addquestion() {
               <div className="space-y-8 flex flex-col items-center justify-center max-w-5xl mx-auto">
                 {generatedBios
                   .substring(generatedBios.indexOf("1") + 3)
-                  .split("/2./")
+                  .split(/\d\./)
                   .map((generatedBio, index) => {
                     return (
                       <div
