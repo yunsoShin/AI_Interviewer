@@ -17,8 +17,10 @@ export default async function handler(req, res) {
   const payload = {
     model: "gpt-3.5-turbo",
     messages: content,
-    max_tokens: 300,
+    max_tokens: 250,
     stream: true,
+    temperature: 0.7,
+    top_p: 1,
   };
 
   const stream = await OpenAIStream(payload);

@@ -29,7 +29,7 @@ function Addquestion() {
       console.log(content);
       const fetchData = async () => {
         setLoading(true);
-        const response = await fetch("/api/resquestionarr", {
+        const response = await fetch("/api/chatgpt", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
