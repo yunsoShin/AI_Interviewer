@@ -26,7 +26,7 @@ function Addquestion() {
   useEffect(() => {
     if ((resultConvert, resultJob, content)) {
       setGeneratedBios("");
-      console.log(content);
+
       const fetchData = async () => {
         setLoading(true);
         const response = await fetch("/api/chatgpt", {
@@ -88,7 +88,7 @@ function Addquestion() {
               <div className="space-y-8 flex flex-col items-center justify-center max-w-5xl mx-auto">
                 {generatedBios
                   .substring(generatedBios.indexOf("1") + 3)
-                  .split("2.")
+                  .split("/2./")
                   .map((generatedBio, index) => {
                     return (
                       <div
@@ -106,8 +106,10 @@ function Addquestion() {
                     );
                   })}
               </div>
-              <Answer generatedBios={generatedBios}></Answer>
             </>
+          )}
+          {resultConvert && resultJob && (
+            <Answer generatedBios={generatedBios}></Answer>
           )}
         </div>
       </>

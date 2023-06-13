@@ -47,12 +47,13 @@ export default function UploadPDF() {
       setContent([
         {
           role: "system",
-          content: `Please answer all the answers in Korean, You read the text and Generate list 2 clearly labeled "1." and "2." technical questions for the interviewer to as These questions are as detailed as possible and consist of essential questions related to job`,
+          content: `Please answer all the answers in Korean, You read the text and Generate list 2 clearly labeled "/1./" and "/2./" technical questions for the interviewer to as These questions are as detailed as possible and consist of essential questions related to job`,
         },
         {
           role: "user",
-          content: `Please answer all the answers in Korean , ${resultJob} Please fill out 1 required interview questions for the job interview,
-          ${resume}Based on this article, write 1 technical questions that the interviewer can ask in order of importance So please write 2 questions`,
+          content: `Please answer all the answers in Korean, write 1 interview question for the ${resultJob} job interview,
+          ${resume} Based on this article, please write technical questions that the interviewer can ask and write a total of 2 questions
+          The two questions are divided into "/1./" and "/2./`,
         },
       ]);
       {
