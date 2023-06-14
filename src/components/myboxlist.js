@@ -24,25 +24,18 @@ function QuestionCard() {
   return (
     <div className=" w-full">
       <>
-        <Toaster
-          position="top-center"
-          reverseOrder={false}
-          toastOptions={{ duration: 2000 }}
-        />
-        <div className=" space-y-10 my-10">
-          <div
-            className="space-y-8 flex flex-col items-center justify-center max-w-5xl mx-auto"
-            onClick={async () => {
-              toast("파생될 질문을 생성합니다", {
-                icon: <FontAwesomeIcon icon={faMicrochip} />,
-              });
-              router.push("/");
-            }}
-          >
+        <Toaster position="top-center" reverseOrder={false} />
+        <div className="mx-auto overflow-y-scroll h-[800px] mr-0">
+          <div className=" gap-8 flex flex-col items-center justify-center">
             {Likes.map((like, key) => (
               <div
-                className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition  cursor-pointer border"
+                className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition   cursor-pointer border "
                 key={key}
+                onClick={async () => {
+                  toast("파생될 질문을 생성합니다", {
+                    icon: <FontAwesomeIcon icon={faMicrochip} />,
+                  });
+                }}
               >
                 <p>{like.likeText}</p>
               </div>
