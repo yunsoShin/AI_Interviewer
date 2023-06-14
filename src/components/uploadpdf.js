@@ -81,7 +81,7 @@ export default function UploadPDF() {
       {loading && (
         <div className="text-center">Uploading and converting...</div>
       )}
-      {!loading && !resultConvert && !resultJob && (
+      {!loading && !content && (
         <div
           {...getRootProps()}
           className="flex border-2 border-gray-400 rounded-md justify-center items-center p-4  text-center w-full h-full transition duration-500 ease-in-out transform hover:scale-105 cursor-pointer"

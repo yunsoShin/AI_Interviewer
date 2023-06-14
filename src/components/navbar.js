@@ -2,22 +2,28 @@ import React from "react";
 import { useAuthContext } from "@/pages/_app";
 import Button from "./ui/Button";
 import Link from "next/link";
-function Navbar(props) {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMicrochip } from "@fortawesome/free-solid-svg-icons";
+
+function Navbar() {
   const { user, login, logout } = useAuthContext();
   return (
-    <div className="flex p-4 justify-end">
-      <div className="px-3">
+    <nav className="flex justify-between items-center py-4 px-6 bg-white shadow mb-10">
+      <Link href="/">
+        <button className="text-xl font-bold text-gray-800  scale-150">
+          <FontAwesomeIcon icon={faMicrochip} />
+        </button>
+      </Link>
+      <div className="flex items-center gap-4">
         {user && (
           <Link href="/mybox">
-            <Button text={"보관함"} />
+            <Button className="mr-4" text={"Mybox"} />
           </Link>
         )}
-      </div>
-      <div className="">
         {!user && <Button text={"Login"} onClick={login} />}
         {user && <Button text={"Logout"} onClick={logout} />}
       </div>
-    </div>
+    </nav>
   );
 }
 

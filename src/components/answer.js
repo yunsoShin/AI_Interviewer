@@ -7,7 +7,6 @@ function Answer({ generatedBios }) {
     useAIProcess();
   const [answer, setAnswer] = useState();
   const [answerArr, setAnswerArr] = useState([]);
-  console.log(generatedBios);
 
   return (
     <>
