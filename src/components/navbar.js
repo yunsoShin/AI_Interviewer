@@ -8,7 +8,7 @@ import { faMicrochip } from "@fortawesome/free-solid-svg-icons";
 function Navbar() {
   const { user, login, logout } = useAuthContext();
   return (
-    <nav className="flex justify-between items-center py-4 px-6 bg-white shadow mb-10">
+    <nav className="flex justify-between items-center py-4 px-6 bg-white shadow mb-3">
       <Link href="/">
         <button className="text-xl font-bold text-gray-800  scale-150">
           <FontAwesomeIcon icon={faMicrochip} />
