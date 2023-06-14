@@ -96,6 +96,7 @@ function Addquestion() {
               >
                 {generatedBios
                   .substring(generatedBios.indexOf("1") + 3)
+                  .replaceAll("/", "")
                   .split(/\d\./)
                   .map((generatedBio, index) => {
                     return (
