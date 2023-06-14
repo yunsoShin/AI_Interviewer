@@ -91,7 +91,7 @@ function Addquestion() {
             <>
               <hr className=" bg-gray-700 border-1 dark:bg-gray-700" />
               <div
-                className="space-y-8 flex flex-col items-center justify-center overflow-y-scroll h-[600px]  mr-10 translate-x-12"
+                className="space-y-8 flex flex-col items-center justify-center overflow-y-scroll h-[600px]  mr-10 md:translate-x-12 md:text-lg text-xs  translate-x-10"
                 ref={scrollRef}
               >
                 {generatedBios
@@ -100,7 +100,7 @@ function Addquestion() {
                   .map((generatedBio, index) => {
                     return (
                       <div
-                        className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border mr-10"
+                        className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border md:mr-10 -translate-x-4"
                         onClick={async () => {
                           navigator.clipboard.writeText(generatedBio);
                           toast("클립보드와 MyBox에 저장하였습니다", {
@@ -119,7 +119,7 @@ function Addquestion() {
           )}
           {content && (
             <button
-              className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full"
+              className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full  scale-x-75 md:scale-100"
               onClick={() =>
                 setContent((prevContent) => [
                   ...prevContent,
