@@ -111,8 +111,23 @@ function Addquestion() {
               </div>
             </>
           )}
-          {resultConvert && resultJob && (
-            <Answer generatedBios={generatedBios}></Answer>
+          {content && (
+            <button
+              className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full"
+              onClick={() =>
+                setContent((prevContent) => [
+                  ...prevContent,
+                  { role: "assistant", content: `${generatedBios}` },
+                  {
+                    role: "user",
+                    content: `이전에 했던질문 이외의 새로운 질문을 다시 생성해줘
+              `,
+                  },
+                ])
+              }
+            >
+              새 질문 생성하기
+            </button>
           )}
         </div>
       </>
