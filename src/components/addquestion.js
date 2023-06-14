@@ -12,6 +12,7 @@ import { useAuthContext, useAIProcess } from "@/pages/_app";
 import { setLikes } from "@/pages/api/firebase";
 
 function Addquestion() {
+  const scrollRef = useRef(null);
   const { resultConvert, resultJob, prompt, content, setContent } =
     useAIProcess();
   const { uid } = useAuthContext();
@@ -27,8 +28,6 @@ function Addquestion() {
 
   useEffect(() => {
     if ((resultConvert, resultJob, content)) {
-      setGeneratedBios("");
-
       const fetchData = async () => {
         setLoading(true);
         const response = await fetch("/api/chatgpt", {
@@ -73,9 +72,13 @@ function Addquestion() {
       fetchData();
     }
   }, [resultConvert, resultJob, content]);
-
+  useEffect(() => {
+    if (scrollRef.current !== null) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [generatedBios]);
   return (
-    <div className=" w-full">
+    <div className=" w-full ">
       <>
         <Toaster
           position="top-center"
@@ -83,11 +86,14 @@ function Addquestion() {
           toastOptions={{ duration: 2000 }}
         />
 
-        <div className="space-y-10 my-10">
+        <div className="">
           {generatedBios && (
             <>
-              <hr className="h-px bg-gray-700 border-1 dark:bg-gray-700" />
-              <div className="space-y-8 flex flex-col items-center justify-center max-w-5xl mx-auto">
+              <hr className=" bg-gray-700 border-1 dark:bg-gray-700" />
+              <div
+                className="space-y-8 flex flex-col items-center justify-center  mx-auto overflow-y-scroll h-[600px] mr-0"
+                ref={scrollRef}
+              >
                 {generatedBios
                   .substring(generatedBios.indexOf("1") + 3)
                   .split(/\d\./)

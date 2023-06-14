@@ -30,7 +30,7 @@ function Answer({ generatedBios }) {
                     role: "user",
                     content: `Please answer in Korean. All questions should be questions except the answers mentioned earlier. However, detailed questions derived from the question are allowed only one
                   answer:"${answer}" /n ""The text between "and" is your content to the previous question
-                  "${answer}" Please write 2 interview question that will follow this answer The two questions are divided into "/1./" and "/2./"
+                  "${answer}" Please write 2 interview question that will follow this answer The two questions are divided into "1." and "2."
                   `,
                   },
                 ]);
@@ -43,7 +43,7 @@ function Answer({ generatedBios }) {
                         role: "user",
                         content: `Please answer all the answers in Korean, write 1 interview question for the ${resultJob} job interview,
                         ${resultConvert} Based on this article, please write technical questions that the interviewer can ask and write a total of 2 questions
-                        questions should be questions except ${answerArr}. The two questions are divided into "/1./" and "/2./
+                        questions should be questions except ${answerArr}. The two questions are divided into "1." and "2."
                       `,
                       },
                     ])
