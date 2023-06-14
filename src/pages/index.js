@@ -8,7 +8,7 @@ function Home() {
     <div className=" pointer-events-auto">
       <Navbar></Navbar>
       <div>
-        <h2 className="sm:text-4xl text-3xl font-bold text-slate-900 mx-auto text-center">
+        <h2 className="sm:text-4xl text-2xl font-bold text-slate-900 mx-auto text-center">
           AI interviewer
         </h2>
       </div>
