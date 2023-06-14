@@ -10,6 +10,50 @@ import {
 } from "eventsource-parser";
 import { useAuthContext, useAIProcess } from "@/pages/_app";
 import { setLikes } from "@/pages/api/firebase";
+import { useQuery } from "@tanstack/react-query";
+
+async function fetchData(content) {
+  const response = await fetch("/api/chatgpt", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      content,
+    }),
+  });
+
+  const data = response.body;
+
+  if (!data) {
+    return;
+  }
+
+  let generatedBios = "";
+
+  const onParse = (event) => {
+    if (event.type === "event") {
+      const data = event.data;
+      try {
+        const text = JSON.parse(data).text ?? "";
+        generatedBios += text;
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  };
+
+  const reader = data.getReader();
+  const decoder = new TextDecoder();
+  const parser = createParser(onParse);
+  let done = false;
+  while (!done) {
+    const { value, done: doneReading } = await reader.read();
+    done = doneReading;
+    const chunkValue = decoder.decode(value, { stream: true });
+    parser.feed(chunkValue);
+  }
+
+  return generatedBios;
+}
 
 function Addquestion() {
   const { resultConvert, resultJob, prompt, content, setContent } =
@@ -17,62 +61,21 @@ function Addquestion() {
   const { uid } = useAuthContext();
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
-  const [generatedBios, setGeneratedBios] = useState("");
   const bioRef = useRef(null);
   const scrollToBios = () => {
     if (bioRef.current !== null) {
       bioRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
-
-  useEffect(() => {
-    if ((resultConvert, resultJob, content)) {
-      setGeneratedBios("");
-
-      const fetchData = async () => {
-        setLoading(true);
-        const response = await fetch("/api/chatgpt", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            content,
-          }),
-        });
-
-        const data = response.body;
-
-        if (!data) {
-          return;
-        }
-
-        const onParse = (event) => {
-          if (event.type === "event") {
-            const data = event.data;
-            try {
-              const text = JSON.parse(data).text ?? "";
-              setGeneratedBios((prev) => prev + text);
-            } catch (e) {
-              console.error(e);
-            }
-          }
-        };
-        const reader = data.getReader();
-        const decoder = new TextDecoder();
-        const parser = createParser(onParse);
-        let done = false;
-        while (!done) {
-          const { value, done: doneReading } = await reader.read();
-          done = doneReading;
-          const chunkValue = decoder.decode(value, { stream: true });
-          parser.feed(chunkValue);
-        }
-        scrollToBios();
-        setLoading(false);
-      };
-
-      fetchData();
-    }
-  }, [resultConvert, resultJob, content]);
+  const {
+    data: generatedBios,
+    isLoading,
+    error,
+  } = useQuery(["chatgpt", content], () => fetchData(content), {
+    enabled: !!(resultConvert && resultJob && content), // Fetch only if these values are truthy
+    retry: false,
+    refetchOnWindowFocus: false,
+  });
 
   return (
     <div className=" w-full">
