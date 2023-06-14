@@ -5,7 +5,7 @@
 
 /* styles/global.css */
 .space-y-8::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 .space-y-8::-webkit-scrollbar-track {
@@ -19,3 +19,5 @@
 .space-y-8::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+

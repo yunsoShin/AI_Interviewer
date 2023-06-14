@@ -25,7 +25,7 @@ function QuestionCard() {
     <div className=" w-full">
       <>
         <Toaster position="top-center" reverseOrder={false} />
-        <div className="mx-auto overflow-y-scroll h-[800px] mr-0">
+        <div className="mx-auto overflow-y-scroll h-[750px] mr-0">
           <div className=" gap-8 flex flex-col items-center justify-center">
             {Likes.map((like, key) => (
               <div

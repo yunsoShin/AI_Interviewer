@@ -13,7 +13,7 @@ function Home() {
         </h2>
       </div>
 
-      <main className="mx-auto flex flex-col justify-center items-center  p-11">
+      <main className="mx-auto flex flex-col justify-center items-center  p-5">
         <UploadPDF></UploadPDF>
         <Addquestion></Addquestion>
       </main>
