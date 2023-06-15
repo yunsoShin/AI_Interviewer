@@ -13,8 +13,7 @@ import { setLikes } from "@/pages/api/firebase";
 
 function Addquestion() {
   const scrollRef = useRef(null);
-  const { resultConvert, resultJob, prompt, content, setContent } =
-    useAIProcess();
+  const { resultConvert, resultJob, content, setContent } = useAIProcess();
   const { uid } = useAuthContext();
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
