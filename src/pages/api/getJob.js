@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     model: "text-davinci-003",
     prompt: `${requestBody} What kind of job is this resume for? Tell me your job in one word in English`,
     temperature: 0.2,
-    max_tokens: 10,
+    max_tokens: 20,
     top_p: 1.0,
     frequency_penalty: 0.0,
     presence_penalty: 0.0,

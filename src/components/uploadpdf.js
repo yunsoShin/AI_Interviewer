@@ -7,6 +7,10 @@ import { uploadResume } from "../pages/api/firebase";
 import { useAuthContext, useAIProcess } from "@/pages/_app";
 import { Toaster, toast } from "react-hot-toast"; // Add this line
 
+function splitStringAt(string, length) {
+  return string.slice(0, length);
+}
+
 export default function UploadPDF() {
   const {
     resultConvert,
@@ -40,10 +44,14 @@ export default function UploadPDF() {
     try {
       setLoading(true);
       const resultConvert = await convertPdf(file);
-      setResultConvert(resultConvert);
-      const resultJob = await getJob(resultConvert);
-      setResultJob(resultJob);
       const resume = resultConvert.toString();
+      {
+        uid && (await uploadResume(resume, uid));
+      }
+      const splitResume = splitStringAt(resume, 1500);
+      setResultConvert(resultConvert);
+      const resultJob = await getJob(splitResume);
+      setResultJob(resultJob);
       setContent([
         {
           role: "system",
@@ -56,9 +64,6 @@ export default function UploadPDF() {
           Questions are separated into formats such as "/1./" and "/2./`,
         },
       ]);
-      {
-        uid && (await uploadResume(resume, uid));
-      }
     } catch (error) {
       console.error(error);
     } finally {
