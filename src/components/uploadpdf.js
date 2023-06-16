@@ -12,21 +12,11 @@ function splitStringAt(string, length) {
 }
 
 export default function UploadPDF() {
-  const {
-    resultConvert,
-    setResultConvert,
-    resultJob,
-    setResultJob,
-    prompt,
-    setPrompt,
-    setContent,
-    content,
-  } = useAIProcess();
+  const { setResultConvert, setResultJob, setContent, content } =
+    useAIProcess();
   const { uid } = useAuthContext();
   const [selectedFile, setSelectedFile] = useState();
-
   const [loading, setLoading] = useState(false);
-
   const onDrop = useCallback((acceptedFiles) => {
     if (
       acceptedFiles.length > 0 &&

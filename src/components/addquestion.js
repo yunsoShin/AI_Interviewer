@@ -70,7 +70,7 @@ function Addquestion() {
 
       fetchData();
     }
-  }, [resultConvert, resultJob, content]);
+  }, [content]);
   useEffect(() => {
     if (scrollRef.current !== null) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
