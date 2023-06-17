@@ -10,67 +10,22 @@ import {
 } from "eventsource-parser";
 import { useAuthContext, useAIProcess } from "@/pages/_app";
 import { setLikes } from "@/pages/api/firebase";
+import { useFetchAndParse } from "@/hooks/useFetchAndParse";
 
 function Addquestion() {
   const scrollRef = useRef(null);
   const { resultConvert, resultJob, content, setContent } = useAIProcess();
   const { uid } = useAuthContext();
-  const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
-  const [generatedBios, setGeneratedBios] = useState("");
+
   const bioRef = useRef(null);
   const scrollToBios = () => {
     if (bioRef.current !== null) {
       bioRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
-
-  useEffect(() => {
-    if ((resultConvert, resultJob, content)) {
-      const fetchData = async () => {
-        setLoading(true);
-        const response = await fetch("/api/chatgpt", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            content,
-          }),
-        });
-
-        const data = response.body;
-
-        if (!data) {
-          return;
-        }
-
-        const onParse = (event) => {
-          if (event.type === "event") {
-            const data = event.data;
-            try {
-              const text = JSON.parse(data).text ?? "";
-              setGeneratedBios((prev) => prev + text);
-            } catch (e) {
-              console.error(e);
-            }
-          }
-        };
-        const reader = data.getReader();
-        const decoder = new TextDecoder();
-        const parser = createParser(onParse);
-        let done = false;
-        while (!done) {
-          const { value, done: doneReading } = await reader.read();
-          done = doneReading;
-          const chunkValue = decoder.decode(value, { stream: true });
-          parser.feed(chunkValue);
-        }
-        scrollToBios();
-        setLoading(false);
-      };
-
-      fetchData();
-    }
-  }, [content]);
+  const { loading, generatedBios, setGeneratedBios, setLoading } =
+    useFetchAndParse(content);
   useEffect(() => {
     if (scrollRef.current !== null) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
