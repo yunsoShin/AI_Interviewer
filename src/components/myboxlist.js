@@ -17,7 +17,8 @@ function QuestionCard() {
   const { uid } = useAuthContext();
   const { resultConvert, resultJob, prompt, content, setContent } =
     useAIProcess();
-  const [selectedLike, setSelectedLike] = useState(null);
+  const [selectedKey, setSelectedKey] = useState(null);
+  const [selectedText, setSelectedText] = useState("");
   // Make sure Likes is not undefined and it's an array
   if (uid === null) {
     return <div>로그인을 해주세요</div>;
@@ -34,26 +35,34 @@ function QuestionCard() {
             {Likes.map(
               (like, key) =>
                 // Only show the div if no like is selected, or if this like is the selected one
-                (selectedLike === null || selectedLike === key) && (
+                selectedKey === null && (
                   <div
-                    className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition   cursor-pointer border "
+                    className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition   cursor-pointer border  w-3/4 text-center"
                     key={key}
                     onClick={async () => {
-                      toast("면접을 시작하겠습니다", {
-                        icon: <FontAwesomeIcon icon={faMicrochip} />,
-                      });
-
-                      // Update the selectedLike state with the key of the clicked like
-                      setSelectedLike(key);
+                      if (selectedKey === null) {
+                        toast("면접을 시작하겠습니다", {
+                          icon: <FontAwesomeIcon icon={faMicrochip} />,
+                        });
+                        setSelectedKey(key);
+                        setSelectedText(like.likeText);
+                        console.log(like.likeText);
+                      }
                     }}
                   >
                     <p>{like.likeText}</p>
-
-                    {selectedLike === key && (
-                      <Answer generatedBios={selectedLike}></Answer>
-                    )}
                   </div>
                 )
+            )}
+            {selectedKey && (
+              <div className="flex justify-center items-center w-full h-screen">
+                <div className=" bg-white rounded-xl shadow-md p-4 transition  border  w-3/4 text-center h-3/5 flex flex-col justify-between">
+                  <p className=" py-5 rounded-xl shadow-md p-4 transition  border ">
+                    {selectedText}
+                  </p>
+                  <Answer className="" generatedBios={setSelectedText}></Answer>
+                </div>
+              </div>
             )}
           </div>
         </div>

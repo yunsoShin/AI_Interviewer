@@ -22,36 +22,12 @@ function Answer({ generatedBios }) {
           <button
             className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full"
             onClick={() => {
-              if (content.length <= 3) {
-                setContent((prevContent) => [
-                  ...prevContent,
-                  { role: "assistant", content: `${generatedBios}` },
-                  {
-                    role: "user",
-                    content: `Please answer in Korean. All questions should be questions except the answers mentioned earlier. However, detailed questions derived from the question are allowed only one
-                  answer:"${answer}" /n ""The text between "and" is your content to the previous question
-                  "${answer}" Please write 2 interview question that will follow this answer The two questions are divided into "1." and "2."
-                  `,
-                  },
-                ]);
-              } else if (content.length > 3) {
-                setContent((prevContent) =>
-                  prevContent
-                    .filter((item) => item.role === "system") // role이 "system"인 요소만 필터링
-                    .concat([
-                      {
-                        role: "user",
-                        content: `Please answer all the answers in Korean, write 1 interview question for the ${resultJob} job interview,
-                        ${resultConvert} Based on this article, please write technical questions that the interviewer can ask and write a total of 2 questions
-                        questions should be questions except ${answerArr}. The two questions are divided into "1." and "2."
-                      `,
-                      },
-                    ])
-                );
-              }
-
-              setAnswerArr((prevArr) => [...prevArr, answer]);
-              setAnswer("");
+              setContent([
+                {
+                  role: "user",
+                  content: `${resultJob}면접자가 ${generatedBios}에 대한 답변으로 ${answer}이란 답변을 하였어 이 뒤에 이어질 추가질문을 생성해줘`,
+                },
+              ]);
               console.log(answer);
             }}
           >
