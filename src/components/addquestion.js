@@ -10,9 +10,8 @@ import {
 } from "eventsource-parser";
 import { useAuthContext, useAIProcess } from "@/pages/_app";
 import { setLikes } from "@/pages/api/firebase";
-import { useFetchAndParse } from "@/hooks/useFetchAndParse";
 
-function Addquestion() {
+function Addquestion({ generatedBios }) {
   const scrollRef = useRef(null);
   const { resultConvert, resultJob, content, setContent } = useAIProcess();
   const { uid } = useAuthContext();
@@ -24,8 +23,7 @@ function Addquestion() {
       bioRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
-  const { loading, generatedBios, setGeneratedBios, setLoading } =
-    useFetchAndParse(content);
+
   useEffect(() => {
     if (scrollRef.current !== null) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -71,29 +69,6 @@ function Addquestion() {
                   })}
               </div>
             </>
-          )}
-          {content && !loading && (
-            <button
-              className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full  scale-x-75 md:scale-100"
-              onClick={() =>
-                setContent((prevContent) => [
-                  ...prevContent,
-                  { role: "assistant", content: `${generatedBios}` },
-                  {
-                    role: "user",
-                    content: `이전에 했던질문 이외의 새로운 질문을 다시 생성해줘
-              `,
-                  },
-                ])
-              }
-            >
-              새 질문 생성하기
-            </button>
-          )}
-          {content && loading && (
-            <button className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full  scale-x-75 md:scale-100">
-              loading
-            </button>
           )}
         </div>
       </>
