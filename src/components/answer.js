@@ -25,7 +25,7 @@ function Answer({ generatedBios }) {
               setContent([
                 {
                   role: "user",
-                  content: `${resultJob}면접자가 ${generatedBios}에 대한 답변으로 ${answer}이란 답변을 하였어 이 뒤에 이어질 추가질문을 생성해줘`,
+                  content: `${resultJob}에 지원한 면접자가 ${generatedBios}에 대한 답변으로 ${answer}이란 답변을 하였어 이 뒤에 이어질 추가질문을 생성해줘`,
                 },
               ]);
               console.log(answer);

@@ -20,4 +20,7 @@
   background: #555;
 }
 
-
+.not-selected {
+  transform: scale(0);
+  transition: transform 0.3s ease-out;
+}

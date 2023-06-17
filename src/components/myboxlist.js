@@ -15,7 +15,7 @@ function QuestionCard() {
     myBoxQuery: { data: Likes },
   } = useMyBox();
   const { uid } = useAuthContext();
-  const { resultConvert, resultJob, prompt, content, setContent } =
+  const { resultConvert, resultJob, setPrompt, content, setContent } =
     useAIProcess();
   const [selectedKey, setSelectedKey] = useState(null);
   const [selectedText, setSelectedText] = useState("");
@@ -32,38 +32,31 @@ function QuestionCard() {
         <Toaster position="top-center" reverseOrder={false} />
         <div className="mx-auto overflow-y-scroll h-[750px] mr-0">
           <div className=" gap-8 flex flex-col items-center justify-center">
-            {Likes.map(
-              (like, key) =>
-                // Only show the div if no like is selected, or if this like is the selected one
-                selectedKey === null && (
-                  <div
-                    className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition   cursor-pointer border  w-3/4 text-center"
-                    key={key}
-                    onClick={async () => {
-                      if (selectedKey === null) {
-                        toast("면접을 시작하겠습니다", {
-                          icon: <FontAwesomeIcon icon={faMicrochip} />,
-                        });
-                        setSelectedKey(key);
-                        setSelectedText(like.likeText);
-                        console.log(like.likeText);
-                      }
-                    }}
-                  >
-                    <p>{like.likeText}</p>
-                  </div>
-                )
-            )}
-            {selectedKey && (
-              <div className="flex justify-center items-center w-full h-screen">
-                <div className=" bg-white rounded-xl shadow-md p-4 transition  border  w-3/4 text-center h-3/5 flex flex-col justify-between">
-                  <p className=" py-5 rounded-xl shadow-md p-4 transition  border ">
-                    {selectedText}
-                  </p>
-                  <Answer className="" generatedBios={setSelectedText}></Answer>
-                </div>
+            {Likes.map((like, key) => (
+              <div
+                className={`bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-pointer border w-3/4 text-center ${
+                  selectedKey !== null && selectedKey !== key
+                    ? "not-selected"
+                    : ""
+                }`}
+                key={key}
+                onClick={async () => {
+                  if (selectedKey === null) {
+                    toast("면접을 시작하겠습니다", {
+                      icon: <FontAwesomeIcon icon={faMicrochip} />,
+                    });
+                    setSelectedKey(key);
+                    setSelectedText(like.likeText);
+                    setPrompt(like.likeText);
+                    setTimeout(() => {
+                      router.push("/customQnA");
+                    }, 2000);
+                  }
+                }}
+              >
+                <p>{like.likeText}</p>
               </div>
-            )}
+            ))}
           </div>
         </div>
       </>
