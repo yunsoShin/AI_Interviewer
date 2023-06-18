@@ -87,10 +87,11 @@ export async function getLike(userID) {
 }
 
 export async function setLikes(likeText, userId) {
-  const id = uuid();
-  return set(ref(database, `Likes/${userId}/${id}`), {
+  // Remove unwanted characters
+  const regaxlikeText = likeText.replace(/[.#$[\]\s]/g, "");
+
+  return set(ref(database, `Likes/${userId}/${regaxlikeText}`), {
     likeText,
-    id,
   });
 }
 

@@ -35,7 +35,7 @@ function Addquestion({ generatedBios }) {
             <>
               <hr className=" bg-gray-700 border-1 dark:bg-gray-700" />
               <div
-                className="space-y-8 flex flex-col items-center justify-center overflow-y-scroll h-[600px]  mr-10 md:translate-x-12 md:text-lg text-xs  translate-x-7"
+                className="space-y-8 flex flex-col items-center justify-center overflow-y-scroll h-[550px]  mr-10 md:translate-x-12 md:text-lg text-xs  translate-x-7"
                 ref={scrollRef}
               >
                 {generatedBios
