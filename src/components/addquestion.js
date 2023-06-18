@@ -33,15 +33,16 @@ function Addquestion({ generatedBios }) {
         <div className="">
           {generatedBios && (
             <>
-              <hr className=" bg-gray-700 border-1 dark:bg-gray-700" />
+              <hr className="bg-gray-700 border-1 dark:bg-gray-700" />
               <div
                 className="space-y-8 flex flex-col items-center justify-center overflow-y-scroll h-[550px]  mr-10 md:translate-x-12 md:text-lg text-xs  translate-x-7"
                 ref={scrollRef}
               >
                 {generatedBios
-                  .substring(generatedBios.indexOf("1") + 3)
                   .replaceAll("/", "")
+                  .trim()
                   .split(/\d\./)
+                  .slice(1)
                   .map((generatedBio, index) => {
                     return (
                       <div

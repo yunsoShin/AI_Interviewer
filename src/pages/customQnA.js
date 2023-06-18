@@ -10,6 +10,7 @@ function CustomQnA() {
   const { prompt, content } = useAIProcess();
   const { loading, generatedBios, setGeneratedBios, setLoading } =
     useFetchAndParse(content);
+
   return (
     <>
       <Head>
@@ -28,8 +29,9 @@ function CustomQnA() {
         </div>
 
         <main className="mx-auto flex flex-col justify-center items-center  p-5">
-          <Addquestion generatedBios={generatedBios}></Addquestion>
-          {prompt}
+          <Addquestion
+            generatedBios={generatedBios ? generatedBios : prompt}
+          ></Addquestion>
           <Answer></Answer>
         </main>
       </div>
