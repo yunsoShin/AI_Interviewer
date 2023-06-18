@@ -27,11 +27,11 @@ function QuestionCard() {
   }
 
   return (
-    <div className=" w-full">
+    <div className="w-full">
       <>
         <Toaster position="top-center" reverseOrder={false} />
         <div className="mx-auto overflow-y-scroll h-[750px] mr-0">
-          <div className=" gap-8 flex flex-col items-center justify-center">
+          <div className="gap-8 flex flex-col items-center justify-center">
             {Likes.map((like, key) => (
               <div
                 className={`bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-pointer border w-3/4 text-center ${
@@ -47,10 +47,11 @@ function QuestionCard() {
                     });
                     setSelectedKey(key);
                     setSelectedText(like.likeText);
+                    setContent("");
                     setPrompt(like.likeText);
                     setTimeout(() => {
                       router.push("/customQnA");
-                    }, 2000);
+                    }, 800);
                   }
                 }}
               >

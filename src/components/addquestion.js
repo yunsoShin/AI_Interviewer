@@ -1,13 +1,6 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
-import { convertPdf, getJob, getQuestionArr } from "../utils/fetchapis";
 import { Toaster, toast } from "react-hot-toast";
-import Answer from "./answer";
-import {
-  createParser,
-  ParsedEvent,
-  ReconnectInterval,
-} from "eventsource-parser";
 import { useAuthContext, useAIProcess } from "@/pages/_app";
 import { setLikes } from "@/pages/api/firebase";
 
@@ -16,7 +9,6 @@ function Addquestion({ generatedBios }) {
   const { resultConvert, resultJob, content, setContent } = useAIProcess();
   const { uid } = useAuthContext();
   const [bio, setBio] = useState("");
-
   const bioRef = useRef(null);
   const scrollToBios = () => {
     if (bioRef.current !== null) {

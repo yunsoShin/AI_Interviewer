@@ -1,10 +1,8 @@
 import React from "react";
 import UploadPDF from "../components/uploadpdf";
 import Navbar from "@/components/navbar";
-import Answer from "@/components/answer";
 import Addquestion from "@/components/addquestion";
 import Head from "next/head";
-import Button from "@/components/ui/Button";
 import { useAIProcess } from "./_app";
 import { useFetchAndParse } from "@/hooks/useFetchAndParse";
 
