@@ -10,6 +10,7 @@ export default async function handler(req, res) {
     res.status(400).send("Invalid JSON");
     return;
   }
+
   const body = await req.json();
 
   const content = body.content;

@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuthContext } from "@/pages/_app";
+import { useAIProcess, useAuthContext } from "@/pages/_app";
 import Button from "./ui/Button";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,10 +7,16 @@ import { faMicrochip } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
   const { user, login, logout } = useAuthContext();
+  const { setContent } = useAIProcess();
   return (
     <nav className="flex justify-between items-center py-2 pl-6 md:py-6 bg-white shadow mb-3">
       <Link href="/">
-        <button className="text-xl font-bold text-gray-800  scale-150">
+        <button
+          className="text-xl font-bold text-gray-800  scale-150"
+          onClick={() => {
+            setContent();
+          }}
+        >
           <FontAwesomeIcon className="md:scale-125" icon={faMicrochip} />
         </button>
       </Link>

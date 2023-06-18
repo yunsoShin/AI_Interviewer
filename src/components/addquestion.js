@@ -42,7 +42,7 @@ function Addquestion({ generatedBios }) {
                   .replaceAll("/", "")
                   .trim()
                   .split(/\d\./)
-                  .slice(1)
+                  .filter((generatedBio) => generatedBio.trim() !== "")
                   .map((generatedBio, index) => {
                     return (
                       <div

@@ -46,7 +46,9 @@ export const useFetchAndParse = (content) => {
       setLoading(false);
     };
 
-    fetchData();
+    if (content) {
+      fetchData();
+    }
   }, [content]);
 
   return { loading, generatedBios, setGeneratedBios, setLoading };
