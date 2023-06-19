@@ -6,7 +6,8 @@ import { setLikes } from "@/pages/api/firebase";
 
 function Addquestion({ generatedBios }) {
   const scrollRef = useRef(null);
-  const { resultConvert, resultJob, content, setContent } = useAIProcess();
+  const { resultConvert, resultJob, content, setContent, prompt } =
+    useAIProcess();
   const { uid } = useAuthContext();
   const [bio, setBio] = useState("");
   const bioRef = useRef(null);
@@ -56,6 +57,7 @@ function Addquestion({ generatedBios }) {
                         }}
                         key={index}
                       >
+                        <p>{prompt}</p>
                         <p>{generatedBio}</p>
                       </div>
                     );

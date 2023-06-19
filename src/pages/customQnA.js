@@ -29,9 +29,7 @@ function CustomQnA() {
         </div>
 
         <main className="mx-auto flex flex-col justify-center items-center  p-5">
-          <Addquestion
-            generatedBios={generatedBios ? generatedBios : prompt}
-          ></Addquestion>
+          <Addquestion generatedBios={generatedBios}></Addquestion>
           <Answer></Answer>
         </main>
       </div>
