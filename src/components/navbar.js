@@ -7,7 +7,7 @@ import { faMicrochip } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
   const { user, login, logout } = useAuthContext();
-  const { setContent } = useAIProcess();
+  const { setContent, setPrompt } = useAIProcess();
   return (
     <nav className="flex justify-between items-center py-2 pl-6 md:py-6 bg-white shadow mb-3">
       <Link href="/">
@@ -15,6 +15,7 @@ function Navbar() {
           className="text-xl font-bold text-gray-800  scale-150"
           onClick={() => {
             setContent();
+            setPrompt(null);
           }}
         >
           <FontAwesomeIcon className="md:scale-125" icon={faMicrochip} />

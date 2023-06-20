@@ -36,9 +36,11 @@ function Addquestion({ generatedBios }) {
             className="space-y-8 flex flex-col items-center justify-center overflow-y-scroll h-[550px]  mr-10 md:translate-x-12 md:text-lg text-xs  translate-x-7"
             ref={scrollRef}
           >
-            <p className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border md:mr-10 mr-7">
-              {prompt}
-            </p>
+            {prompt && (
+              <p className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition border md:mr-10 mr-7">
+                {prompt}
+              </p>
+            )}
             {generatedBios
               .replaceAll("/", "")
               .trim()
