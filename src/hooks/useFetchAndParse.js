@@ -1,16 +1,5 @@
 import { useState, useEffect } from "react";
 import { createParser } from "eventsource-parser";
-const onParse = (event) => {
-  if (event.type === "event") {
-    const data = event.data;
-    try {
-      const text = JSON.parse(data).text ?? "";
-      setGeneratedBios((prev) => prev + text);
-    } catch (e) {
-      console.error(e);
-    }
-  }
-};
 
 export const useFetchAndParse = (content) => {
   const [loading, setLoading] = useState(false);
