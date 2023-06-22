@@ -3,8 +3,7 @@ import { useState } from "react";
 import { useAIProcess } from "@/pages/_app";
 
 function Answer() {
-  const { prompt, setPrompt, content, setContent, resultConvert, resultJob } =
-    useAIProcess();
+  const { prompt, setContent, resultJob } = useAIProcess();
   const [answer, setAnswer] = useState();
   const [answerArr, setAnswerArr] = useState([]);
   return (
