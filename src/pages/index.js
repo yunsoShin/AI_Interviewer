@@ -29,7 +29,9 @@ function Home() {
 
         <main className="mx-auto flex flex-col justify-center items-center  p-5">
           <UploadPDF></UploadPDF>
-          <Addquestion generatedBios={generatedBios}></Addquestion>
+          {resultJob && (
+            <Addquestion generatedBios={generatedBios}></Addquestion>
+          )}
 
           {content && !loading && (
             <button
