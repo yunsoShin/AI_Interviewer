@@ -57,6 +57,7 @@ function Addquestion({ generatedBios }) {
                           toast("클립보드와 MyBox에 저장하였습니다", {
                             icon: "✂️",
                           });
+                        setLikes(generatedBio, uid);
                       }
                       {
                         !uid &&
@@ -64,7 +65,6 @@ function Addquestion({ generatedBios }) {
                             icon: "✂️",
                           });
                       }
-                      setLikes(generatedBio, uid);
                     }}
                     key={index}
                   >
