@@ -31,11 +31,12 @@ AI 면접관은 이력서를 토대로 면접 질문을 생성하는 인공지�
 
 ## 꼬리물기 질문 구현
 사용자가 면접관과 대화를 진행하며 심도깊은 대화를 이어나갈수있는 기능을 구현하였습니다
-![화면 기록 2023-06-13 오후 12 01 10](https://github.com/yunsoShin/next13portfolio/assets/91814941/3ade4a24-161c-47fb-8d35-b43192a53de3)
+![화면 기록 2023-06-18 오후 1 21 53](https://github.com/yunsoShin/AI_Interviewer/assets/91814941/05951742-10a7-40eb-90dd-42b909c9a4e8)
+
 
 ## Toast를 활용한 PDF검증
 
-![화면 기록 2023-06-13 오후 12 03 07](https://github.com/yunsoShin/next13portfolio/assets/91814941/e53d22bf-b585-4eae-9c2a-86000eda7b2f)
+
 
 ## 핵심 로직
 
