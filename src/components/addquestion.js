@@ -52,9 +52,18 @@ function Addquestion({ generatedBios }) {
                     className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border md:mr-10 mr-7"
                     onClick={async () => {
                       navigator.clipboard.writeText(generatedBio);
-                      toast("클립보드와 MyBox에 저장하였습니다", {
-                        icon: "✂️",
-                      });
+                      {
+                        uid &&
+                          toast("클립보드와 MyBox에 저장하였습니다", {
+                            icon: "✂️",
+                          });
+                      }
+                      {
+                        !uid &&
+                          toast("클립보드에 저장하였습니다", {
+                            icon: "✂️",
+                          });
+                      }
                       setLikes(generatedBio, uid);
                     }}
                     key={index}
