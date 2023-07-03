@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
-import { convertPdf, getJob } from "../utils/fetchapis";
+import { convertResume, getJob } from "../utils/fetchapis";
 import Addquestion from "./addquestion";
 import { uploadResume } from "../pages/api/firebase";
 import { useAuthContext, useAIProcess } from "@/pages/_app";
@@ -42,7 +42,7 @@ export default function UploadPDF() {
   const uploadAndConvertFile = async (file) => {
     try {
       setLoading(true);
-      const resultConvert = await convertPdf(file);
+      const resultConvert = await convertResume(file);
       const resume = resultConvert.toString();
       {
         uid && (await uploadResume(resume, uid));
@@ -81,7 +81,7 @@ export default function UploadPDF() {
       className=" sm:w-3/6
     "
     >
-      <Toaster /> {/* Add this line */}
+      <Toaster />
       {loading && (
         <div className="text-center">Uploading and converting...</div>
       )}
