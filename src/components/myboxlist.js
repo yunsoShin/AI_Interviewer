@@ -50,7 +50,7 @@ function QuestionCard() {
                     setContent("");
                     setPrompt(like.likeText);
                     setTimeout(() => {
-                      router.push("/customQnA");
+                      router.push("/customquestion");
                     }, 800);
                   }
                 }}
