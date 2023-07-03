@@ -1,5 +1,5 @@
 import React from "react";
-import UploadPDF from "../components/uploadpdf";
+import UploadResume from "../components/uploadresume";
 import Navbar from "@/components/navbar";
 import Addquestion from "@/components/addquestion";
 import Head from "next/head";
@@ -28,7 +28,7 @@ function Home() {
         </div>
 
         <main className="mx-auto flex flex-col justify-center items-center  p-5">
-          <UploadPDF></UploadPDF>
+          <UploadResume></UploadResume>
           {resultJob && (
             <Addquestion generatedBios={generatedBios}></Addquestion>
           )}
