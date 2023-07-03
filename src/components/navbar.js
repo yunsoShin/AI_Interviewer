@@ -14,7 +14,7 @@ function Navbar() {
         <button
           className="text-xl font-bold text-gray-800  scale-150"
           onClick={() => {
-            setContent();
+            setContent(null);
             setPrompt(null);
           }}
         >
