@@ -7,7 +7,7 @@ import {
 export const convertPdf = async (file) => {
   const formData = new FormData();
   formData.append("file", file);
-  const res = await fetch("/api/convertpdf", {
+  const res = await fetch("/api/converts/convertpdf", {
     method: "POST",
     body: formData,
   });
