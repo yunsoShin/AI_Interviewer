@@ -1,12 +1,31 @@
 import { createParser } from "eventsource-parser";
 
-export const convertPdf = async (file) => {
+export const convertResume = async (file) => {
   const formData = new FormData();
   formData.append("file", file);
-  const res = await fetch("/api/converts/convertpdf", {
-    method: "POST",
-    body: formData,
-  });
+  console.log(file.type);
+  let res;
+  switch (file.type) {
+    case "application/pdf":
+      res = await fetch("/api/converts/convertpdf", {
+        method: "POST",
+        body: formData,
+      });
+      break;
+    case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+      res = await fetch("/api/converts/convertexel", {
+        method: "POST",
+        body: formData,
+      });
+      break;
+    case "application/vnd.ms-excel":
+      res = await fetch("/api/converts/convertexel", {
+        method: "POST",
+        body: formData,
+      });
+      break;
+  }
+
   return res.text();
 };
 
