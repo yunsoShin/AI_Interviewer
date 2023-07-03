@@ -17,17 +17,26 @@ export default function UploadPDF() {
   const { uid } = useAuthContext();
   const [selectedFile, setSelectedFile] = useState();
   const [loading, setLoading] = useState(false);
+  const [resumeType, setResumeType] = useState();
   const onDrop = useCallback((acceptedFiles) => {
-    if (
-      acceptedFiles.length > 0 &&
-      acceptedFiles[0].type === "application/pdf"
-    ) {
-      setSelectedFile(acceptedFiles[0]);
-    } else {
-      toast.error("Only PDF files are accepted."); // Use the toast.error function
+    setResumeType(acceptedFiles[0]?.type);
+    switch (acceptedFiles[0]?.type) {
+      case "application/pdf":
+        setSelectedFile(acceptedFiles[0]);
+        break;
+      case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+        setSelectedFile(acceptedFiles[0]);
+        break;
+      case "application/vnd.ms-excel":
+        setSelectedFile(acceptedFiles[0]);
+        break;
+      default:
+        toast.error("지원하지 않는 파일 형식입니다.");
     }
   }, []);
-
+  useEffect(() => {
+    console.log(resumeType);
+  }, [resumeType]);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const uploadAndConvertFile = async (file) => {
