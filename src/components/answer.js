@@ -4,42 +4,6 @@ import { useAIProcess } from "@/pages/_app";
 function Answer() {
   const { prompt, setContent, resultJob } = useAIProcess();
   const [answer, setAnswer] = useState("");
-  let recognition = null;
-
-  const startListening = () => {
-    if ("webkitSpeechRecognition" in window) {
-      recognition = new window.webkitSpeechRecognition();
-      recognition.lang = "ko-KR";
-      recognition.interimResults = true;
-      recognition.continuous = true;
-
-      let finalTranscript = "";
-
-      recognition.onresult = (event) => {
-        let interimTranscript = "";
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-          const transcript = event.results[i][0].transcript;
-          if (event.results[i].isFinal) {
-            finalTranscript += transcript;
-          } else {
-            interimTranscript += transcript;
-          }
-        }
-        setAnswer(finalTranscript + interimTranscript);
-      };
-
-      recognition.start();
-    } else {
-      console.log("Browser does not support Speech recognition");
-    }
-  };
-
-  const stopListening = () => {
-    if (recognition) {
-      recognition.stop();
-      recognition = null;
-    }
-  };
 
   return (
     <>
@@ -52,12 +16,7 @@ function Answer() {
             className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black mt-5"
             placeholder={"  This is conducted/progressed by chain reactions."}
           />
-          <button
-            className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full"
-            onClick={startListening}
-          >
-            Start Voice Input
-          </button>
+
           <button
             className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-7 mt-5 hover:bg-black/80 w-full"
             onClick={(e) => {
@@ -76,7 +35,6 @@ function Answer() {
                 },
               ]);
               setAnswer(""); //sdsd
-              stopListening();
             }}
           >
             답변하기 &rarr;
