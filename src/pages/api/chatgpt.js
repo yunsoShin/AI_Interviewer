@@ -13,7 +13,7 @@ export default async function handler(req, res) {
 
   const body = await req.json();
 
-  const content = body.content;
+  const content = body.content; //ㄴㅇㄴㅇㄴ
 
   const payload = {
     model: "gpt-3.5-turbo",
