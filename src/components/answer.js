@@ -75,7 +75,7 @@ function Answer() {
           `,
                 },
               ]);
-              setAnswer(""); //sdsd
+              setAnswer("");
               stopListening();
             }}
           >
