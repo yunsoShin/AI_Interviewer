@@ -20,7 +20,7 @@ function Answer() {
           <button
             className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-7 mt-5 hover:bg-black/80 w-full"
             onClick={(e) => {
-              e.preventDefault(); //ㄴㅇㄴㅇㄴㅇㄴ
+              e.preventDefault(); //ㄴㅇㄴㅇ
               setContent(() => [
                 {
                   role: "system",
