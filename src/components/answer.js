@@ -52,14 +52,10 @@ function Answer() {
             className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black mt-5"
             placeholder={"  This is conducted/progressed by chain reactions."}
           />
+          <button onClick={startListening}>Start Voice Input</button>
+          <button onClick={stopListening}>Stop Voice Input</button>
           <button
             className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full"
-            onClick={startListening}
-          >
-            Start Voice Input
-          </button>
-          <button
-            className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-7 mt-5 hover:bg-black/80 w-full"
             onClick={(e) => {
               e.preventDefault();
               setContent(() => [
