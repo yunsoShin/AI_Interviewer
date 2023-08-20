@@ -14,8 +14,8 @@ function Navbar() {
         <button
           className="text-xl font-bold text-gray-800  scale-150"
           onClick={() => {
-            setContent("");
-            setPrompt("");
+            setContent(null);
+            setPrompt(null);
           }}
         >
           <FontAwesomeIcon className="md:scale-125" icon={faMicrochip} />

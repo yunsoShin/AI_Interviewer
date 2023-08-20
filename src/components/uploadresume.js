@@ -52,15 +52,13 @@ export default function UploadPDF() {
       setContent([
         {
           role: "system",
-          content: `Write key questions that you can ask from the three quoted text`,
+          content: `Please answer all your answers in Korean. Questions are separated into formats such as "/1./" and "/2./".  These questions are as technical as possible and consist of required job questions`,
         },
         {
           role: "user",
-          content: `"""<${resume}>"""
-          Question: <Please answer all the answers in Korean, write 3 interview question for the ${resultJob} job interview,
-          please write technical questions that the interviewer can ask and write a total of 3 questions
-          Questions are separated into formats such as "/1./" and "/2./" and "/3./">
-          `,
+          content: `Please answer all the answers in Korean, write 5 interview question for the ${resultJob} job interview,
+          please write technical questions that the interviewer can ask and write a total of 5 questions
+          Questions are separated into formats such as "/1./" and "/2./`,
         },
       ]);
     } catch (error) {

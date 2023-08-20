@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     model: "gpt-3.5-turbo",
     messages: content,
     temperature: 0.65,
-    max_tokens: 1000,
+    max_tokens: 600,
     stream: true,
   };
 

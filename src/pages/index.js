@@ -29,7 +29,7 @@ function Home() {
 
         <main className="mx-auto flex flex-col justify-center items-center  p-5">
           <UploadResume></UploadResume>
-          {resultJob && content && (
+          {resultJob && (
             <Addquestion generatedBios={generatedBios}></Addquestion>
           )}
 
@@ -42,7 +42,8 @@ function Home() {
                   { role: "assistant", content: `${generatedBios}` },
                   {
                     role: "user",
-                    content: `이전에 했던질문 이외의 새로운 질문을 다시 생성해줘`,
+                    content: `이전에 했던질문 이외의 새로운 질문을 다시 생성해줘
+            `,
                   },
                 ])
               }
