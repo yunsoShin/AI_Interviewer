@@ -10,13 +10,6 @@ function Home() {
   const { resultConvert, resultJob, content, setContent } = useAIProcess();
   const { loading, generatedBios, setGeneratedBios, setLoading } =
     useFetchAndParse(content);
-
-  var one = document.getElementById("one");
-  one.addEventListener("click", function () {
-    var two = document.getElementById("two");
-    two.removeEventListener();
-  });
-  one.removeEventListener("click");
   return (
     <>
       <Head>
@@ -64,9 +57,6 @@ function Home() {
           )}
         </main>
       </div>
-
-      <div id="one">One</div>
-      <div id="two">Two</div>
     </>
   );
 }
