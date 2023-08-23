@@ -9,7 +9,7 @@ import { useFetchAndParse } from "@/hooks/useFetchAndParse";
 function Home() {
   const { resultConvert, resultJob, content, setContent } = useAIProcess();
   const { loading, generatedBios, setGeneratedBios, setLoading } =
-    useFetchAndParse(content); //ㄴㅇㄴ
+    useFetchAndParse(content); //ㄴㅇㄴㄴㅇㄴㅇ
   return (
     <>
       <Head>
