@@ -77,7 +77,7 @@ export async function uploadResume(resume, userId) {
 
 export async function removeFromLike(userId, resumeId) {
   return remove(ref(database, `Likes/${userId}/${resumeId}`));
-} //hhㄴㄴㅇㄴfgfg
+} //hhㄴㄴㅇㄴfgfgfsfsß
 
 export async function getLike(userID) {
   return get(ref(database, `Likes/${userID}`)).then((snapshot) => {
