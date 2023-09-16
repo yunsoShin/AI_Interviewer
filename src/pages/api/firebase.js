@@ -71,7 +71,7 @@ export async function uploadResume(resume, userId) {
   const id = uuid();
   return set(ref(database, `Resumes/${userId}`), {
     id,
-    resume,
+    resume, //wew
   });
 }
 
