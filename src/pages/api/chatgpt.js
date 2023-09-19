@@ -28,7 +28,6 @@ export default async function handler(req, res) {
   return new Response(stream, {
     headers: new Headers({
       "Cache-Control": "no-cache",
-    }), //ddffssssssssㄴㄴss
+    }),
   });
 }
-//gf

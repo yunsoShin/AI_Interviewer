@@ -8,7 +8,6 @@ export default async function handler(req, res) {
     return;
   }
   const body = await req.json();
-
   const payload = body.payload;
   const stream = `${payload} 테스트용 코드입니다`;
   return new Response(stream, {

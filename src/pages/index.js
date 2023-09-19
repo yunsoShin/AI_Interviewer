@@ -5,11 +5,11 @@ import Addquestion from "@/components/addquestion";
 import Head from "next/head";
 import { useAIProcess } from "./_app";
 import { useFetchAndParse } from "@/hooks/useFetchAndParse";
-//ㄴㅇㄴ
+
 function Home() {
   const { resultConvert, resultJob, content, setContent } = useAIProcess();
   const { loading, generatedBios, setGeneratedBios, setLoading } =
-    useFetchAndParse(content); //ㄴㅇㄴㄴㅇㄴㅇㄴㄴㄴㄴㄴ
+    useFetchAndParse(content);
   return (
     <>
       <Head>

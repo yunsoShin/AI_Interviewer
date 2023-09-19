@@ -71,13 +71,13 @@ export async function uploadResume(resume, userId) {
   const id = uuid();
   return set(ref(database, `Resumes/${userId}`), {
     id,
-    resume, //wew
+    resume,
   });
 }
 
 export async function removeFromLike(userId, resumeId) {
   return remove(ref(database, `Likes/${userId}/${resumeId}`));
-} //hhㄴㄴㅇㄴfgfgfsfsßㄴㅇㄴㄴㅇㄴㅇㄴㄴㄴs
+}
 
 export async function getLike(userID) {
   return get(ref(database, `Likes/${userID}`)).then((snapshot) => {
@@ -87,9 +87,7 @@ export async function getLike(userID) {
 }
 
 export async function setLikes(likeText, userId) {
-  // Remove unwanted characters
   const regaxlikeText = likeText.replace(/[.#$[\]\s]/g, "");
-
   return set(ref(database, `Likes/${userId}/${regaxlikeText}`), {
     likeText,
   });
