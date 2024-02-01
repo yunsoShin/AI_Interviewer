@@ -9,5 +9,5 @@ function mybox(props) {
     </div>
   );
 }
-
+// ..
 export default mybox;
