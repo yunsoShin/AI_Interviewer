@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   const requestBody = JSON.stringify(req.body); // 요청의 body를 JSON 문자열로 변환
 
   const response = await openai.createCompletion({
-    model: "text-davinci-003",
+    model: "gpt-3.5-turbo-0125",
     prompt: `${requestBody} What kind of job is this resume for? Tell me your job in one word in English`,
     temperature: 0.2,
     max_tokens: 20,
