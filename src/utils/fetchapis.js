@@ -1,5 +1,5 @@
 import { createParser } from "eventsource-parser";
-
+ 
 export const convertResume = async (file) => {
   const formData = new FormData();
   formData.append("file", file);
