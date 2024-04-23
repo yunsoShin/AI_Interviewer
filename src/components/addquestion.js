@@ -3,8 +3,34 @@ import { useState, useRef, useEffect } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { useAuthContext, useAIProcess } from "@/pages/_app";
 import { setLikes } from "@/pages/api/firebase";
+import { handlePlayAudio } from "@/utils/fetchapis";
 
 function Addquestion({ generatedBios }) {
+
+    const handlePlayAudio = async (input) => {
+    const response = await fetch('https://api.openai.com/v1/audio/speech', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer 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`, // 서버에서 이 값을 동적으로 주입받는 방식을 권장
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: "tts-1",
+        input: input,
+        voice: "alloy"
+      })
+    });
+    
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const blob = await response.blob();
+    const audioUrl = URL.createObjectURL(blob);
+    const audio = new Audio(audioUrl);
+    audio.play();
+    };
+  
   const scrollRef = useRef(null);
   const { resultConvert, resultJob, content, setContent, prompt } =
     useAIProcess();
@@ -51,6 +77,7 @@ function Addquestion({ generatedBios }) {
                   <div
                     className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border md:mr-10 mr-7"
                     onClick={async () => {
+                        handlePlayAudio(generatedBio)
                       navigator.clipboard.writeText(generatedBio);
                       {
                         uid &&

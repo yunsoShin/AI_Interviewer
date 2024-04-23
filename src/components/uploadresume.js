@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
-import { convertResume, getJob } from "../utils/fetchapis";
+import { convertResume} from "../utils/fetchapis";
 import Addquestion from "./addquestion";
 import { uploadResume } from "../pages/api/firebase";
 import { useAuthContext, useAIProcess } from "@/pages/_app";
@@ -51,7 +51,7 @@ export default function UploadPDF() {
         {
           role: "system",
           content: `When a user attaches a resume, they generate five interview expected questions for that resume. 
-All questions are divided into "/1./" and "/2./" and "/3./" and "/4./" and "/5./."`,
+All questions are divided into "/1./" and "/2./" and "/3./" and "/4./" and "/5./." in korean!!`,
         },
         {
           role: "user",

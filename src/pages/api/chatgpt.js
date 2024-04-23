@@ -16,7 +16,7 @@ export default async function handler(req, res) {
   const content = body.content;
 
   const payload = {
-    model: "gpt-3.5-turbo",
+    model: "gpt-4-turbo-preview",
     messages: content,
     temperature: 0.65,
     max_tokens: 600,
