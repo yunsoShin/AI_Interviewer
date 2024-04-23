@@ -46,19 +46,16 @@ export default function UploadPDF() {
         uid && (await uploadResume(resume, uid));
       }
       const splitResume = splitStringAt(resume, 1500);
-      setResultConvert(resultConvert);
-      const resultJob = await getJob(splitResume);
-      setResultJob(resultJob);
+
       setContent([
         {
           role: "system",
-          content: `Please answer all your answers in Korean. Questions are separated into formats such as "/1./" and "/2./".  These questions are as technical as possible and consist of required job questions`,
+          content: `When a user attaches a resume, they generate five interview expected questions for that resume. 
+All questions are divided into "/1./" and "/2./" and "/3./" and "/4./" and "/5./."`,
         },
         {
           role: "user",
-          content: `Please answer all the answers in Korean, write 5 interview question for the ${resultJob} job interview,
-          please write technical questions that the interviewer can ask and write a total of 5 questions
-          Questions are separated into formats such as "/1./" and "/2./`,
+          content:`${splitResume} job interview`,
         },
       ]);
     } catch (error) {

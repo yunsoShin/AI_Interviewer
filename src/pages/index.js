@@ -29,9 +29,8 @@ function Home() {
 
         <main className="mx-auto flex flex-col justify-center items-center  p-5">
           <UploadResume></UploadResume>
-          {resultJob && (
-            <Addquestion generatedBios={generatedBios}></Addquestion>
-          )}
+         
+          <Addquestion generatedBios={generatedBios}></Addquestion>
 
           {content && !loading && (
             <button
@@ -64,28 +63,3 @@ function Home() {
 
 export default Home;
 
-{
-  /* {content && !loading && (
-            <button
-              className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full  scale-x-75 md:scale-100"
-              onClick={() =>
-                setContent((prevContent) => [
-                  ...prevContent,
-                  { role: "assistant", content: `${generatedBios}` },
-                  {
-                    role: "user",
-                    content: `이전에 했던질문 이외의 새로운 질문을 다시 생성해줘
-              `,
-                  },
-                ])
-              }
-            >
-              새 질문 생성하기
-            </button>
-          )}
-          {content && loading && (
-            <button className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full  scale-x-75 md:scale-100">
-              loading
-            </button>
-          )} */
-}
