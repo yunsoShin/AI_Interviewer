@@ -3,31 +3,47 @@ import { useState, useRef, useEffect } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { useAuthContext, useAIProcess } from "@/pages/_app";
 import { setLikes } from "@/pages/api/firebase";
-import { handlePlayAudio } from "@/utils/fetchapis";
+import axios from "axios";
 
 function Addquestion({ generatedBios }) {
+  const [isPlaying, setIsPlaying] = useState(false); // 오디오 재생 중인지 상태 추가
+
   const handlePlayAudio = async (input) => {
-    const response = await fetch("https://api.openai.com/v1/audio/speech", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`, // 서버에서 이 값을 동적으로 주입받는 방식을 권장
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "tts-1",
-        input: input,
-        voice: "alloy",
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
+    if (isPlaying) {
+      return; // 오디오가 이미 재생 중이라면 함수 종료
     }
+    setIsPlaying(true); // 오디오 재생 시작
 
-    const blob = await response.blob();
-    const audioUrl = URL.createObjectURL(blob);
-    const audio = new Audio(audioUrl);
-    audio.play();
+    try {
+      const response = await axios.post(
+        "https://api.openai.com/v1/audio/speech",
+        {
+          model: "tts-1",
+          input: input,
+          voice: "alloy",
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_KEY}`, // 서버에서 이 값을 동적으로 주입받는 방식을 권장
+            "Content-Type": "application/json",
+          },
+          responseType: "blob", // 응답을 blob으로 받기 위함
+        }
+      );
+
+      const blob = response.data;
+      const audioUrl = URL.createObjectURL(blob);
+      const audio = new Audio(audioUrl);
+      audio.play();
+
+      audio.onended = () => {
+        setIsPlaying(false); // 오디오 재생이 끝나면 상태 업데이트
+      };
+    } catch (error) {
+      console.error("Error playing audio:", error.response.data);
+      toast.error("오디오 재생에 실패했습니다.");
+      setIsPlaying(false); // 오류 발생 시 상태 업데이트
+    }
   };
 
   const scrollRef = useRef(null);
@@ -47,6 +63,7 @@ function Addquestion({ generatedBios }) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [generatedBios]);
+
   return (
     <div className="w-full">
       <Toaster
@@ -76,20 +93,21 @@ function Addquestion({ generatedBios }) {
                   <div
                     className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border md:mr-10 mr-7"
                     onClick={async () => {
-                      handlePlayAudio(generatedBio);
-                      navigator.clipboard.writeText(generatedBio);
-                      {
-                        uid &&
+                      try {
+                        navigator.clipboard.writeText(generatedBio);
+                        if (uid) {
                           toast("클립보드와 MyBox에 저장하였습니다", {
                             icon: "✂️",
                           });
-                        setLikes(generatedBio, uid);
-                      }
-                      {
-                        !uid &&
+                          setLikes(generatedBio, uid);
+                        } else {
                           toast("클립보드에 저장하였습니다", {
                             icon: "✂️",
                           });
+                        }
+                        await handlePlayAudio(generatedBio);
+                      } catch (error) {
+                        console.error("Error handling click:", error);
                       }
                     }}
                     key={index}

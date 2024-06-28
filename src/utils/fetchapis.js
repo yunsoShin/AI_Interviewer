@@ -1,10 +1,10 @@
 import { createParser } from "eventsource-parser";
- 
+
 export const convertResume = async (file) => {
   const formData = new FormData();
   formData.append("file", file);
   console.log(file.type);
-  let res; 
+  let res;
   switch (file.type) {
     case "application/pdf":
       res = await fetch("/api/converts/convertpdf", {
@@ -29,8 +29,6 @@ export const convertResume = async (file) => {
   return res.text();
 };
 
-
-
 export async function OpenAIStream(payload) {
   const encoder = new TextEncoder();
   const decoder = new TextDecoder();
@@ -38,7 +36,7 @@ export async function OpenAIStream(payload) {
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_KEY}`,
     },
     method: "POST",
     body: JSON.stringify(payload),
@@ -99,28 +97,24 @@ export async function OpenAIStream(payload) {
   return readableStream.pipeThrough(transformStream);
 }
 
+export async function handlePlayAudio(payload) {
+  const response = await fetch("https://api.openai.com/v1/audio/speech", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_KEY}`, // 서버에서 이 값을 동적으로 주입받는 방식을 권장
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      payload,
+    }),
+  });
 
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
 
-
- export async function handlePlayAudio(payload){
-    const response = await fetch('https://api.openai.com/v1/audio/speech', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`, // 서버에서 이 값을 동적으로 주입받는 방식을 권장
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-      payload })
-    });
-    
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-
-    const blob = await response.blob();
-    const audioUrl = URL.createObjectURL(blob);
-    const audio = new Audio(audioUrl);
-    audio.play();
- };
-  
- 
+  const blob = await response.blob();
+  const audioUrl = URL.createObjectURL(blob);
+  const audio = new Audio(audioUrl);
+  audio.play();
+}
