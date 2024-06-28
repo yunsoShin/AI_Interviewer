@@ -53,7 +53,7 @@ function Home() {
           )}
           {content && loading && (
             <button className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full scale-x-75 md:scale-100">
-              로딩중
+              생성중
             </button>
           )}
         </main>
