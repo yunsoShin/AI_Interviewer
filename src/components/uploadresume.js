@@ -1,23 +1,31 @@
 import React from "react";
 import { useState, useEffect, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
-import { convertResume} from "../utils/fetchapis";
+import { convertResume } from "../utils/fetchapis";
 import Addquestion from "./addquestion";
-import { uploadResume } from "../pages/api/firebase";
+import { uploadResumeByUser } from "../pages/api/firebase";
 import { useAuthContext, useAIProcess } from "@/pages/_app";
 import { Toaster, toast } from "react-hot-toast"; // Add this line
+import { useDispatch, useSelector } from "react-redux";
+import { setPrompt, setContent } from "../data/aiProcessSlice";
 
 function splitStringAt(string, length) {
   return string.slice(0, length);
 }
 
-export default function UploadPDF() {
-  const { setResultConvert, setResultJob, setContent, content } =
-    useAIProcess();
+export default function UploadResume() {
+  // const { setResultConvert, setResultJob, setContent, content } =
+  //   useAIProcess();
+  const dispatch = useDispatch();
+  const { resultConvert, resultJob, prompt, content } = useSelector(
+    (state) => state.aiProcess
+  );
+
   const { uid } = useAuthContext();
   const [selectedFile, setSelectedFile] = useState();
   const [loading, setLoading] = useState(false);
   const [resumeType, setResumeType] = useState();
+
   const onDrop = useCallback((acceptedFiles) => {
     setResumeType(acceptedFiles[0]?.type);
     switch (acceptedFiles[0]?.type) {
@@ -43,21 +51,23 @@ export default function UploadPDF() {
       const resultConvert = await convertResume(file);
       const resume = resultConvert.toString();
       {
-        uid && (await uploadResume(resume, uid));
+        uid && (await uploadResumeByUser(resume, uid));
       }
       const splitResume = splitStringAt(resume, 1500);
 
-      setContent([
-        {
-          role: "system",
-          content: `When a user attaches a resume, they generate five interview expected questions for that resume. 
+      dispatch(
+        setContent([
+          {
+            role: "system",
+            content: `When a user attaches a resume, they generate five interview expected questions for that resume. 
 All questions are divided into "/1./" and "/2./" and "/3./" and "/4./" and "/5./." in korean!!`,
-        },
-        {
-          role: "user",
-          content:`${splitResume} job interview`,
-        },
-      ]);
+          },
+          {
+            role: "user",
+            content: `${splitResume} job interview`,
+          },
+        ])
+      );
     } catch (error) {
       console.error(error);
     } finally {

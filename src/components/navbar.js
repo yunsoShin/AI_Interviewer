@@ -1,13 +1,19 @@
 import React from "react";
-import { useAIProcess, useAuthContext } from "@/pages/_app";
+import { useAuthContext } from "@/pages/_app";
 import Button from "./ui/Button";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrochip } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
 
 function Navbar() {
+  const dispatch = useDispatch();
+  const { resultConvert, resultJob, prompt, content } = useSelector(
+    (state) => state.aiProcess
+  );
+
   const { user, login, logout } = useAuthContext();
-  const { setContent, setPrompt } = useAIProcess();
+
   return (
     <nav className="flex justify-between items-center py-2 pl-6 md:py-6 bg-white shadow mb-3">
       <Link href="/">

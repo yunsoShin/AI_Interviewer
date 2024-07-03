@@ -3,11 +3,18 @@ import UploadResume from "../components/uploadresume";
 import Navbar from "@/components/navbar";
 import Addquestion from "@/components/addquestion";
 import Head from "next/head";
-import { useAIProcess } from "./_app";
+// import { useAIProcess } from "./_app";
+import { setPrompt, setContent } from "../data/aiProcessSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { useFetchAndParse } from "@/hooks/useFetchAndParse";
 
 function Home() {
-  const { resultConvert, resultJob, content, setContent } = useAIProcess();
+  // const { resultConvert, resultJob, content, setContent } = useAIProcess();
+  const dispatch = useDispatch();
+  const { resultConvert, resultJob, prompt, content } = useSelector(
+    (state) => state.aiProcess
+  );
+
   const { loading, generatedBios, setGeneratedBios, setLoading } =
     useFetchAndParse(content);
   return (

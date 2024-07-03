@@ -1,9 +1,11 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 import { Toaster, toast } from "react-hot-toast";
-import { useAuthContext, useAIProcess } from "@/pages/_app";
+import { useAuthContext } from "@/pages/_app";
 import { setLikes } from "@/pages/api/firebase";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { setPrompt, setContent } from "../data/aiProcessSlice";
 
 function Addquestion({ generatedBios }) {
   const [isPlaying, setIsPlaying] = useState(false); // 오디오 재생 중인지 상태 추가
@@ -47,8 +49,14 @@ function Addquestion({ generatedBios }) {
   };
 
   const scrollRef = useRef(null);
-  const { resultConvert, resultJob, content, setContent, prompt } =
-    useAIProcess();
+  // const { resultConvert, resultJob, content, setContent, prompt } =
+  //   useAIProcess();
+
+  const dispatch = useDispatch();
+  const { resultConvert, resultJob, prompt, content } = useSelector(
+    (state) => state.aiProcess
+  );
+
   const { uid } = useAuthContext();
   const [bio, setBio] = useState("");
   const bioRef = useRef(null);

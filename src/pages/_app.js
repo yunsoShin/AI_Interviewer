@@ -1,36 +1,23 @@
+// pages/_app.js
+import { Provider } from "react-redux";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import store from "../store";
+import "../styles/globals.css";
 import { createContext, useContext, useEffect, useState } from "react";
 import { login, logout, onUserStateChange } from "../pages/api/firebase";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import "../styles/globals.css";
 
-const AIProcessContext = createContext();
+const queryClient = new QueryClient();
 
-export const AIProcessProvider = ({ children }) => {
-  const [resultConvert, setResultConvert] = useState();
-  const [resultJob, setResultJob] = useState();
-  const [prompt, setPrompt] = useState();
-  const [content, setContent] = useState();
-
+export default function MyApp({ Component, pageProps }) {
   return (
-    <AIProcessContext.Provider
-      value={{
-        resultConvert,
-        setResultConvert,
-        resultJob,
-        setResultJob,
-        prompt,
-        setPrompt,
-        content,
-        setContent,
-      }}
-    >
-      {children}
-    </AIProcessContext.Provider>
+    <QueryClientProvider client={queryClient}>
+      <AuthContextProvider>
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
+      </AuthContextProvider>
+    </QueryClientProvider>
   );
-};
-
-export function useAIProcess() {
-  return useContext(AIProcessContext);
 }
 
 const AuthContext = createContext();
@@ -58,18 +45,4 @@ export function AuthContextProvider({ children }) {
 
 export function useAuthContext() {
   return useContext(AuthContext);
-}
-
-const queryClient = new QueryClient();
-
-export default function MyApp({ Component, pageProps }) {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <AuthContextProvider>
-        <AIProcessProvider>
-          <Component {...pageProps} />
-        </AIProcessProvider>
-      </AuthContextProvider>
-    </QueryClientProvider>
-  );
 }
