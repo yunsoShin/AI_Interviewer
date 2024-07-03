@@ -4,10 +4,10 @@ import Answer from "@/components/answer";
 import Addquestion from "@/components/addquestion";
 import Head from "next/head";
 import Button from "@/components/ui/Button";
-import { useAIProcess } from "./_app";
+// import { useAIProcess } from "./_app";
 import { useFetchAndParse } from "@/hooks/useFetchAndParse";
 function CustomQnA() {
-  const { prompt, content } = useAIProcess();
+  // const { prompt, content } = useAIProcess();
   const { loading, generatedBios, setGeneratedBios, setLoading } =
     useFetchAndParse(content);
 

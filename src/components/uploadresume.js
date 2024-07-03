@@ -4,7 +4,7 @@ import { useDropzone } from "react-dropzone";
 import { convertResume } from "../utils/fetchapis";
 import Addquestion from "./addquestion";
 import { uploadResumeByUser } from "../pages/api/firebase";
-import { useAuthContext, useAIProcess } from "@/pages/_app";
+import { useAuthContext } from "@/pages/_app";
 import { Toaster, toast } from "react-hot-toast"; // Add this line
 import { useDispatch, useSelector } from "react-redux";
 import { setPrompt, setContent } from "../data/aiProcessSlice";

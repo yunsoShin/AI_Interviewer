@@ -2,7 +2,7 @@ import React from "react";
 import useMyBox from "@/hooks/useMyBox";
 import { useAuthContext } from "@/pages/_app";
 import { Toaster, toast } from "react-hot-toast";
-import { useAIProcess } from "@/pages/_app";
+// import { useAIProcess } from "@/pages/_app";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrochip } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
@@ -15,8 +15,8 @@ function QuestionCard() {
     myBoxQuery: { data: Likes },
   } = useMyBox();
   const { uid } = useAuthContext();
-  const { resultConvert, resultJob, setPrompt, content, setContent } =
-    useAIProcess();
+  // const { resultConvert, resultJob, setPrompt, content, setContent } =
+  //   useAIProcess();
   const [selectedKey, setSelectedKey] = useState(null);
   const [selectedText, setSelectedText] = useState("");
   // Make sure Likes is not undefined and it's an array
