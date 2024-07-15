@@ -7,7 +7,7 @@ export const convertResume = async (file) => {
   let res;
   switch (file.type) {
     case "application/pdf":
-      res = await fetch("/api/converts/convertpdf", {
+      res = await fetch("/api/converts/convertpdf", { 
         method: "POST",
         body: formData,
       });
